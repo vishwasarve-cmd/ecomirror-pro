@@ -1,52 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror 2.0 – Climate Intelligence Engine</title>
+<title>EcoMirror AI – Climate Intelligence Platform</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
-<header>
-    <h1>🌍 EcoMirror 2.0</h1>
-    <p>AI-Powered Climate Decision Intelligence</p>
-</header>
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">EcoMirror AI</div>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#simulator">Simulator</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+    </ul>
+</nav>
 
-<section class="container">
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>Visualise Your City's Climate Future</h1>
+    <p>AI-powered climate decision intelligence for sustainable planning</p>
+    <a href="#simulator" class="cta">Start Simulation</a>
+</section>
 
-    <div class="card input-card">
-        <h2>City Policy Simulator</h2>
+<!-- ABOUT -->
+<section id="about" class="section">
+    <h2>What is EcoMirror?</h2>
+    <p>
+        EcoMirror is a climate intelligence platform that transforms policy decisions
+        into visual environmental projections. It helps governments, planners,
+        and communities simulate sustainable futures before implementation.
+    </p>
+</section>
 
-        <label>City Name</label>
-        <input type="text" id="city" placeholder="Enter City Name">
+<!-- SIMULATOR -->
+<section id="simulator" class="section dark">
+    <h2>Policy Simulation Engine</h2>
 
-        <label>Renewable Energy Adoption (%)</label>
-        <input type="range" id="renewable" min="0" max="100" value="20">
+    <div class="simulator-container">
 
-        <label>Public Transport Usage (%)</label>
-        <input type="range" id="transport" min="0" max="100" value="30">
+        <div class="controls">
+            <label>Renewable Energy Transition</label>
+            <input type="range" id="renewable" min="0" max="100" value="30">
 
-        <label>Green Cover Increase (%)</label>
-        <input type="range" id="greenCover" min="0" max="100" value="10">
+            <label>Urban Green Expansion</label>
+            <input type="range" id="green" min="0" max="100" value="20">
 
-        <label>Plastic Reduction (%)</label>
-        <input type="range" id="plastic" min="0" max="100" value="5">
+            <label>Public Transport Modernization</label>
+            <input type="range" id="transport" min="0" max="100" value="25">
 
-        <button onclick="simulate()">Run Simulation</button>
+            <label>Industrial Emission Control</label>
+            <input type="range" id="emission" min="0" max="100" value="15">
+
+            <button onclick="runSimulation()">Generate Projection</button>
+        </div>
+
+        <div class="results">
+            <div class="card">
+                <h3>Sustainability Index</h3>
+                <canvas id="scoreChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>Climate Risk</h3>
+                <canvas id="riskChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section">
+    <h2>2035 Climate Dashboard</h2>
+
+    <div class="dashboard-grid">
+        <div class="info-card" id="aqiBox"></div>
+        <div class="info-card" id="tempBox"></div>
+        <div class="info-card" id="statusBox"></div>
     </div>
 
-    <div class="card result-card">
-        <h2>2035 Climate Projection</h2>
-        <div id="scoreBox"></div>
-        <canvas id="chart"></canvas>
-    </div>
-
+    <canvas id="trendChart"></canvas>
 </section>
 
 <footer>
-    EcoMirror © 2026 | Sustainable Future Engine
+    EcoMirror AI © 2026 | Climate Decision Intelligence
 </footer>
 
 <script src="script.js"></script>
