@@ -1,50 +1,48 @@
+function scrollToSimulation() {
+    document.getElementById("simulation").scrollIntoView({ behavior: "smooth" });
+}
+
 function runSimulation() {
 
-    const renewable = +document.getElementById("renewable").value;
-    const green = +document.getElementById("green").value;
-    const transport = +document.getElementById("transport").value;
-    const emission = +document.getElementById("emission").value;
+    const city = document.getElementById("city").value || "Selected City";
+    const years = +document.getElementById("timeline").value;
 
-    const sustainability =
-        (renewable * 0.3) +
-        (green * 0.25) +
-        (transport * 0.25) +
-        (emission * 0.2);
+    const greenAQI = Math.max(40, 100 - years * 1.2);
+    const pollutedAQI = Math.min(250, 120 + years * 2);
 
-    const projectedAQI = Math.round(250 - sustainability * 1.8);
-    const tempRise = (5 - sustainability * 0.03).toFixed(2);
-    const co2Level = Math.round(450 - sustainability * 1.5);
+    const greenTemp = (1 + years * 0.03).toFixed(2);
+    const pollutedTemp = (1.2 + years * 0.07).toFixed(2);
 
-    document.getElementById("aqiBox").innerHTML =
-        "<h3>Projected AQI</h3><h2>" + projectedAQI + "</h2>";
+    document.getElementById("greenAQI").innerText =
+        "Projected AQI: " + greenAQI;
 
-    document.getElementById("tempBox").innerHTML =
-        "<h3>Temperature Rise</h3><h2>+" + tempRise + "°C</h2>";
+    document.getElementById("greenTemp").innerText =
+        "Temperature Rise: +" + greenTemp + "°C";
 
-    document.getElementById("co2Box").innerHTML =
-        "<h3>CO₂ Concentration</h3><h2>" + co2Level + " ppm</h2>";
+    document.getElementById("pollutedAQI").innerText =
+        "Projected AQI: " + pollutedAQI;
 
-    document.getElementById("statusBox").innerHTML =
-        "<h3>Environmental Outlook</h3><h2>" +
-        (sustainability > 65 ? "Recovering Ecosystem 🌱" :
-         sustainability > 40 ? "Climate Stress ⚠️" :
-         "Severe Instability 🔥") +
-        "</h2>";
-
-    document.getElementById("futureAQI").innerText = "AQI: " + projectedAQI;
-    document.getElementById("futureTemp").innerText = "Temp Rise: +" + tempRise + "°C";
-    document.getElementById("futureCO2").innerText = "CO₂: " + co2Level + " ppm";
+    document.getElementById("pollutedTemp").innerText =
+        "Temperature Rise: +" + pollutedTemp + "°C";
 
     new Chart(document.getElementById("trendChart"), {
         type: "line",
         data: {
-            labels: ["2026", "2028", "2030", "2032", "2035"],
-            datasets: [{
-                label: "AQI Projection",
-                data: [120, 140, 160, 190, projectedAQI],
-                borderColor: "#22c55e",
-                tension: 0.4
-            }]
+            labels: ["Now", "Mid-Term", "Long-Term"],
+            datasets: [
+                {
+                    label: "Sustainable Path",
+                    data: [100, 80, greenAQI],
+                    borderColor: "#22c55e",
+                    tension: 0.4
+                },
+                {
+                    label: "Current Trajectory",
+                    data: [120, 160, pollutedAQI],
+                    borderColor: "#ef4444",
+                    tension: 0.4
+                }
+            ]
         }
     });
 }
