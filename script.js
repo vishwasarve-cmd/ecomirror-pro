@@ -11,45 +11,29 @@ function runSimulation() {
         (transport * 0.25) +
         (emission * 0.2);
 
-    const risk = 100 - sustainability;
-
     const projectedAQI = Math.round(250 - sustainability * 1.8);
-    const tempRise = (5 - sustainability * 0.03).toFixed(1);
-
-    new Chart(document.getElementById("scoreChart"), {
-        type: "doughnut",
-        data: {
-            datasets: [{
-                data: [sustainability, 100 - sustainability],
-                backgroundColor: ["#22c55e", "#475569"]
-            }]
-        },
-        options: { cutout: "75%" }
-    });
-
-    new Chart(document.getElementById("riskChart"), {
-        type: "doughnut",
-        data: {
-            datasets: [{
-                data: [risk, 100 - risk],
-                backgroundColor: ["#ef4444", "#475569"]
-            }]
-        },
-        options: { cutout: "75%" }
-    });
+    const tempRise = (5 - sustainability * 0.03).toFixed(2);
+    const co2Level = Math.round(450 - sustainability * 1.5);
 
     document.getElementById("aqiBox").innerHTML =
-        "<h3>Projected AQI</h3><p>" + projectedAQI + "</p>";
+        "<h3>Projected AQI</h3><h2>" + projectedAQI + "</h2>";
 
     document.getElementById("tempBox").innerHTML =
-        "<h3>Temperature Rise</h3><p>+" + tempRise + "°C</p>";
+        "<h3>Temperature Rise</h3><h2>+" + tempRise + "°C</h2>";
+
+    document.getElementById("co2Box").innerHTML =
+        "<h3>CO₂ Concentration</h3><h2>" + co2Level + " ppm</h2>";
 
     document.getElementById("statusBox").innerHTML =
-        "<h3>Environmental Outlook</h3><p>" +
-        (sustainability > 60 ? "Stable Future" :
-         sustainability > 40 ? "Moderate Risk" :
-         "Severe Instability") +
-        "</p>";
+        "<h3>Environmental Outlook</h3><h2>" +
+        (sustainability > 65 ? "Recovering Ecosystem 🌱" :
+         sustainability > 40 ? "Climate Stress ⚠️" :
+         "Severe Instability 🔥") +
+        "</h2>";
+
+    document.getElementById("futureAQI").innerText = "AQI: " + projectedAQI;
+    document.getElementById("futureTemp").innerText = "Temp Rise: +" + tempRise + "°C";
+    document.getElementById("futureCO2").innerText = "CO₂: " + co2Level + " ppm";
 
     new Chart(document.getElementById("trendChart"), {
         type: "line",
@@ -57,8 +41,8 @@ function runSimulation() {
             labels: ["2026", "2028", "2030", "2032", "2035"],
             datasets: [{
                 label: "AQI Projection",
-                data: [90, 130, 160, 190, projectedAQI],
-                borderColor: "#0ea5e9",
+                data: [120, 140, 160, 190, projectedAQI],
+                borderColor: "#22c55e",
                 tension: 0.4
             }]
         }
