@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror AI – Climate Intelligence Platform</title>
+<title>EcoMirror – Climate Intelligence Platform</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -11,98 +11,104 @@
 <body>
 
 <nav>
-    <div class="logo">EcoMirror AI</div>
+    <div class="logo">EcoMirror</div>
     <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#simulator">Simulator</a></li>
-        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#data">Data Engine</a></li>
+        <li><a href="#simulation">Simulation</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
     </ul>
 </nav>
 
 <section class="hero">
-    <h1>Reimagining Climate Futures</h1>
-    <p>Visual AI Intelligence for Sustainable Cities</p>
-    <a href="#simulator" class="cta">Launch Simulation</a>
+    <h1>Visualising Tomorrow's Earth</h1>
+    <p>AI-Powered Environmental Prediction & Decision Intelligence</p>
+    <button onclick="scrollToSimulation()">Run Simulation</button>
 </section>
 
-<section id="about" class="section">
-    <h2>Platform Overview</h2>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <h3>+43%</h3>
-            <p>Behavioural Shift in Pilot Testing</p>
-        </div>
-        <div class="stat-card">
-            <h3>67%</h3>
-            <p>Improved Climate Awareness</p>
-        </div>
-        <div class="stat-card">
-            <h3>12+</h3>
-            <p>Environmental Indicators Modeled</p>
-        </div>
+<section id="data" class="section dark">
+    <h2>Integrated Data Intelligence Engine</h2>
+
+    <div class="grid-4">
+        <div class="card">🛰 Satellite Imagery<br><span>Atmospheric & Surface Monitoring</span></div>
+        <div class="card">📡 IoT Sensors<br><span>Air Quality & Temperature Networks</span></div>
+        <div class="card">📊 Public Climate Datasets<br><span>Government & Research Data</span></div>
+        <div class="card">🚗 Activity Data<br><span>Transport, Energy & Land Use</span></div>
     </div>
 </section>
 
-<section id="simulator" class="section dark">
-    <h2>Policy Simulation Engine</h2>
+<section class="section">
+    <h2>AI Processing Architecture</h2>
 
-    <div class="simulator-container">
-
-        <div class="controls glass">
-            <label>Renewable Energy Transition</label>
-            <input type="range" id="renewable" min="0" max="100" value="30">
-
-            <label>Urban Green Expansion</label>
-            <input type="range" id="green" min="0" max="100" value="20">
-
-            <label>Public Transport Modernization</label>
-            <input type="range" id="transport" min="0" max="100" value="25">
-
-            <label>Industrial Emission Control</label>
-            <input type="range" id="emission" min="0" max="100" value="15">
-
-            <button onclick="runSimulation()">Generate Climate Projection</button>
-        </div>
-
-        <div class="results glass">
-            <canvas id="scoreChart"></canvas>
-            <canvas id="riskChart"></canvas>
-        </div>
-
+    <div class="architecture">
+        <div>Data Collection</div>
+        <div>AI Multi-Layer Modeling</div>
+        <div>Future Simulation</div>
+        <div>Visual Output Engine</div>
     </div>
 </section>
 
-<section id="dashboard" class="section">
-    <h2>2035 Climate Dashboard</h2>
+<section id="simulation" class="section dark">
+    <h2>City-Level Future Simulation</h2>
 
-    <div class="dashboard-grid">
-        <div class="info-card" id="aqiBox"></div>
-        <div class="info-card" id="tempBox"></div>
-        <div class="info-card" id="co2Box"></div>
-        <div class="info-card" id="statusBox"></div>
-    </div>
+    <input type="text" id="city" placeholder="Enter City Name">
 
-    <div class="comparison-grid">
-        <div class="compare-card current">
-            <h3>Current Scenario</h3>
-            <p>AQI: 120</p>
-            <p>CO₂: 410 ppm</p>
-            <p>Temp Rise: +1.2°C</p>
+    <label>Time Horizon</label>
+    <select id="timeline">
+        <option value="5">5 Years</option>
+        <option value="10">10 Years</option>
+        <option value="25">25 Years</option>
+        <option value="50">50 Years</option>
+    </select>
+
+    <button onclick="runSimulation()">Generate Projection</button>
+
+    <div class="scenario-grid">
+
+        <div class="scenario green">
+            <h3>🌱 Sustainable Path</h3>
+            <p id="greenAQI"></p>
+            <p id="greenTemp"></p>
+            <p>Biodiversity Recovery</p>
         </div>
 
-        <div class="compare-card future">
-            <h3>2035 Projection</h3>
-            <p id="futureAQI">AQI: --</p>
-            <p id="futureCO2">CO₂: --</p>
-            <p id="futureTemp">Temp Rise: --</p>
+        <div class="scenario polluted">
+            <h3>🔥 Current Trajectory</h3>
+            <p id="pollutedAQI"></p>
+            <p id="pollutedTemp"></p>
+            <p>Ecosystem Stress & Health Risks</p>
         </div>
+
     </div>
 
     <canvas id="trendChart"></canvas>
+
+</section>
+
+<section id="applications" class="section">
+    <h2>Real World Applications</h2>
+
+    <div class="grid-4">
+        <div class="card">🎓 Education & Research</div>
+        <div class="card">🏙 Urban Planning</div>
+        <div class="card">🏛 Government Policy</div>
+        <div class="card">🏭 Industrial Compliance</div>
+    </div>
+</section>
+
+<section id="roadmap" class="section dark">
+    <h2>Future Innovation Roadmap</h2>
+
+    <div class="grid-4">
+        <div class="card">Global Coverage Expansion</div>
+        <div class="card">Quantum AI Integration</div>
+        <div class="card">Biodiversity Monitoring</div>
+        <div class="card">Carbon Credit Marketplace</div>
+    </div>
 </section>
 
 <footer>
-    EcoMirror AI © 2026 | Climate Intelligence Platform
+    EcoMirror © 2026 | Transforming Prediction into Prevention
 </footer>
 
 <script src="script.js"></script>
