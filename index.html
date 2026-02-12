@@ -10,7 +10,6 @@
 
 <body>
 
-<!-- NAVIGATION -->
 <nav>
     <div class="logo">EcoMirror AI</div>
     <ul>
@@ -20,30 +19,36 @@
     </ul>
 </nav>
 
-<!-- HERO SECTION -->
 <section class="hero">
-    <h1>Visualise Your City's Climate Future</h1>
-    <p>AI-powered climate decision intelligence for sustainable planning</p>
-    <a href="#simulator" class="cta">Start Simulation</a>
+    <h1>Reimagining Climate Futures</h1>
+    <p>Visual AI Intelligence for Sustainable Cities</p>
+    <a href="#simulator" class="cta">Launch Simulation</a>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
-    <h2>What is EcoMirror?</h2>
-    <p>
-        EcoMirror is a climate intelligence platform that transforms policy decisions
-        into visual environmental projections. It helps governments, planners,
-        and communities simulate sustainable futures before implementation.
-    </p>
+    <h2>Platform Overview</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>+43%</h3>
+            <p>Behavioural Shift in Pilot Testing</p>
+        </div>
+        <div class="stat-card">
+            <h3>67%</h3>
+            <p>Improved Climate Awareness</p>
+        </div>
+        <div class="stat-card">
+            <h3>12+</h3>
+            <p>Environmental Indicators Modeled</p>
+        </div>
+    </div>
 </section>
 
-<!-- SIMULATOR -->
 <section id="simulator" class="section dark">
     <h2>Policy Simulation Engine</h2>
 
     <div class="simulator-container">
 
-        <div class="controls">
+        <div class="controls glass">
             <label>Renewable Energy Transition</label>
             <input type="range" id="renewable" min="0" max="100" value="30">
 
@@ -56,39 +61,48 @@
             <label>Industrial Emission Control</label>
             <input type="range" id="emission" min="0" max="100" value="15">
 
-            <button onclick="runSimulation()">Generate Projection</button>
+            <button onclick="runSimulation()">Generate Climate Projection</button>
         </div>
 
-        <div class="results">
-            <div class="card">
-                <h3>Sustainability Index</h3>
-                <canvas id="scoreChart"></canvas>
-            </div>
-
-            <div class="card">
-                <h3>Climate Risk</h3>
-                <canvas id="riskChart"></canvas>
-            </div>
+        <div class="results glass">
+            <canvas id="scoreChart"></canvas>
+            <canvas id="riskChart"></canvas>
         </div>
 
     </div>
 </section>
 
-<!-- DASHBOARD -->
 <section id="dashboard" class="section">
     <h2>2035 Climate Dashboard</h2>
 
     <div class="dashboard-grid">
         <div class="info-card" id="aqiBox"></div>
         <div class="info-card" id="tempBox"></div>
+        <div class="info-card" id="co2Box"></div>
         <div class="info-card" id="statusBox"></div>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="compare-card current">
+            <h3>Current Scenario</h3>
+            <p>AQI: 120</p>
+            <p>CO₂: 410 ppm</p>
+            <p>Temp Rise: +1.2°C</p>
+        </div>
+
+        <div class="compare-card future">
+            <h3>2035 Projection</h3>
+            <p id="futureAQI">AQI: --</p>
+            <p id="futureCO2">CO₂: --</p>
+            <p id="futureTemp">Temp Rise: --</p>
+        </div>
     </div>
 
     <canvas id="trendChart"></canvas>
 </section>
 
 <footer>
-    EcoMirror AI © 2026 | Climate Decision Intelligence
+    EcoMirror AI © 2026 | Climate Intelligence Platform
 </footer>
 
 <script src="script.js"></script>
