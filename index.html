@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoMirror 2.0 – Climate Intelligence Engine</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>🌍 EcoMirror 2.0</h1>
+    <p>AI-Powered Climate Decision Intelligence</p>
+</header>
+
+<section class="container">
+
+    <div class="card input-card">
+        <h2>City Policy Simulator</h2>
+
+        <label>City Name</label>
+        <input type="text" id="city" placeholder="Enter City Name">
+
+        <label>Renewable Energy Adoption (%)</label>
+        <input type="range" id="renewable" min="0" max="100" value="20">
+
+        <label>Public Transport Usage (%)</label>
+        <input type="range" id="transport" min="0" max="100" value="30">
+
+        <label>Green Cover Increase (%)</label>
+        <input type="range" id="greenCover" min="0" max="100" value="10">
+
+        <label>Plastic Reduction (%)</label>
+        <input type="range" id="plastic" min="0" max="100" value="5">
+
+        <button onclick="simulate()">Run Simulation</button>
+    </div>
+
+    <div class="card result-card">
+        <h2>2035 Climate Projection</h2>
+        <div id="scoreBox"></div>
+        <canvas id="chart"></canvas>
+    </div>
+
+</section>
+
+<footer>
+    EcoMirror © 2026 | Sustainable Future Engine
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
