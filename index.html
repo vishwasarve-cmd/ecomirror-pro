@@ -3,114 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror – Climate Intelligence Platform</title>
+<title>EcoMirror | Climate Decision Intelligence</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
 <nav>
     <div class="logo">EcoMirror</div>
-    <ul>
-        <li><a href="#data">Data Engine</a></li>
-        <li><a href="#simulation">Simulation</a></li>
-        <li><a href="#applications">Applications</a></li>
-        <li><a href="#roadmap">Roadmap</a></li>
-    </ul>
+    <div class="nav-links">
+        <a href="#product">Product</a>
+        <a href="#usecases">Use Cases</a>
+        <a href="#demo">Live Demo</a>
+    </div>
 </nav>
 
 <section class="hero">
-    <h1>Visualising Tomorrow's Earth</h1>
-    <p>AI-Powered Environmental Prediction & Decision Intelligence</p>
-    <button onclick="scrollToSimulation()">Run Simulation</button>
-</section>
-
-<section id="data" class="section dark">
-    <h2>Integrated Data Intelligence Engine</h2>
-
-    <div class="grid-4">
-        <div class="card">🛰 Satellite Imagery<br><span>Atmospheric & Surface Monitoring</span></div>
-        <div class="card">📡 IoT Sensors<br><span>Air Quality & Temperature Networks</span></div>
-        <div class="card">📊 Public Climate Datasets<br><span>Government & Research Data</span></div>
-        <div class="card">🚗 Activity Data<br><span>Transport, Energy & Land Use</span></div>
+    <div class="hero-content">
+        <h1>Climate Intelligence for Smart Cities</h1>
+        <p>EcoMirror transforms environmental data into predictive decision models for governments and urban planners.</p>
+        <button onclick="scrollToDemo()">Launch Live Simulation</button>
     </div>
 </section>
 
-<section class="section">
-    <h2>AI Processing Architecture</h2>
+<section class="problem">
+    <h2>The Problem</h2>
+    <p>
+        Climate dashboards show data.  
+        EcoMirror shows consequences.  
+        We convert environmental inputs into future scenario simulations.
+    </p>
+</section>
 
-    <div class="architecture">
-        <div>Data Collection</div>
-        <div>AI Multi-Layer Modeling</div>
-        <div>Future Simulation</div>
-        <div>Visual Output Engine</div>
+<section id="product" class="product">
+    <h2>Platform Overview</h2>
+
+    <div class="feature-grid">
+        <div class="feature">
+            <h3>Data Integration</h3>
+            <p>Satellite, IoT sensors, and public datasets unified in one engine.</p>
+        </div>
+        <div class="feature">
+            <h3>AI Simulation Engine</h3>
+            <p>Multi-layer environmental projection modeling.</p>
+        </div>
+        <div class="feature">
+            <h3>Scenario Intelligence</h3>
+            <p>Compare sustainable vs current trajectory outcomes.</p>
+        </div>
     </div>
 </section>
 
-<section id="simulation" class="section dark">
-    <h2>City-Level Future Simulation</h2>
+<section id="demo" class="demo">
+    <h2>Live Simulation Dashboard</h2>
 
-    <input type="text" id="city" placeholder="Enter City Name">
+    <div class="dashboard">
 
-    <label>Time Horizon</label>
-    <select id="timeline">
-        <option value="5">5 Years</option>
-        <option value="10">10 Years</option>
-        <option value="25">25 Years</option>
-        <option value="50">50 Years</option>
-    </select>
+        <div class="input-panel">
+            <input type="text" id="city" placeholder="Enter City Name">
 
-    <button onclick="runSimulation()">Generate Projection</button>
+            <label>Time Horizon</label>
+            <select id="timeline">
+                <option value="5">5 Years</option>
+                <option value="10">10 Years</option>
+                <option value="25">25 Years</option>
+            </select>
 
-    <div class="scenario-grid">
-
-        <div class="scenario green">
-            <h3>🌱 Sustainable Path</h3>
-            <p id="greenAQI"></p>
-            <p id="greenTemp"></p>
-            <p>Biodiversity Recovery</p>
+            <button onclick="runSimulation()">Run Projection</button>
         </div>
 
-        <div class="scenario polluted">
-            <h3>🔥 Current Trajectory</h3>
-            <p id="pollutedAQI"></p>
-            <p id="pollutedTemp"></p>
-            <p>Ecosystem Stress & Health Risks</p>
+        <div class="output-panel">
+            <div class="metric" id="aqiBox"></div>
+            <div class="metric" id="tempBox"></div>
+            <div class="metric" id="riskBox"></div>
+            <canvas id="chart"></canvas>
         </div>
 
     </div>
-
-    <canvas id="trendChart"></canvas>
-
 </section>
 
-<section id="applications" class="section">
-    <h2>Real World Applications</h2>
-
-    <div class="grid-4">
-        <div class="card">🎓 Education & Research</div>
-        <div class="card">🏙 Urban Planning</div>
-        <div class="card">🏛 Government Policy</div>
-        <div class="card">🏭 Industrial Compliance</div>
-    </div>
-</section>
-
-<section id="roadmap" class="section dark">
-    <h2>Future Innovation Roadmap</h2>
-
-    <div class="grid-4">
-        <div class="card">Global Coverage Expansion</div>
-        <div class="card">Quantum AI Integration</div>
-        <div class="card">Biodiversity Monitoring</div>
-        <div class="card">Carbon Credit Marketplace</div>
+<section id="usecases" class="usecases">
+    <h2>Use Cases</h2>
+    <div class="usecase-grid">
+        <div>Urban Planning</div>
+        <div>Policy Testing</div>
+        <div>Education</div>
+        <div>Industrial Compliance</div>
     </div>
 </section>
 
 <footer>
-    EcoMirror © 2026 | Transforming Prediction into Prevention
+    © 2026 EcoMirror | Transforming Prediction into Prevention
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
+
