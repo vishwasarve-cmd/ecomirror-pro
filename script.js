@@ -1,76 +1,67 @@
-let climateChart;
+function runSimulation() {
 
-function simulate() {
-    const city = document.getElementById("city").value || "Your City";
-    const renewable = parseInt(document.getElementById("renewable").value);
-    const transport = parseInt(document.getElementById("transport").value);
-    const greenCover = parseInt(document.getElementById("greenCover").value);
-    const plastic = parseInt(document.getElementById("plastic").value);
+    const renewable = +document.getElementById("renewable").value;
+    const green = +document.getElementById("green").value;
+    const transport = +document.getElementById("transport").value;
+    const emission = +document.getElementById("emission").value;
 
-    // Sustainability Score Formula
-    let score = (renewable * 0.3) + (transport * 0.25) + 
-                (greenCover * 0.25) + (plastic * 0.2);
+    const sustainability =
+        (renewable * 0.3) +
+        (green * 0.25) +
+        (transport * 0.25) +
+        (emission * 0.2);
 
-    score = Math.round(score);
+    const risk = 100 - sustainability;
 
-    let riskLevel;
-    let riskClass;
-    let projectedAQI;
-    let tempRise;
+    const projectedAQI = Math.round(250 - sustainability * 1.8);
+    const tempRise = (5 - sustainability * 0.03).toFixed(1);
 
-    if (score >= 70) {
-        riskLevel = "Low Climate Risk 🌱";
-        riskClass = "low-risk";
-        projectedAQI = 40;
-        tempRise = 1.2;
-    } else if (score >= 40) {
-        riskLevel = "Moderate Climate Risk ⚠️";
-        riskClass = "medium-risk";
-        projectedAQI = 110;
-        tempRise = 2.5;
-    } else {
-        riskLevel = "High Climate Risk 🔥";
-        riskClass = "high-risk";
-        projectedAQI = 220;
-        tempRise = 4.3;
-    }
+    new Chart(document.getElementById("scoreChart"), {
+        type: "doughnut",
+        data: {
+            datasets: [{
+                data: [sustainability, 100 - sustainability],
+                backgroundColor: ["#22c55e", "#475569"]
+            }]
+        },
+        options: { cutout: "75%" }
+    });
 
-    const scoreBox = document.getElementById("scoreBox");
-    scoreBox.className = riskClass;
-    scoreBox.innerHTML = `
-        <h3>${city} Sustainability Score: ${score}/100</h3>
-        <p>${riskLevel}</p>
-        <p>Projected AQI (2035): ${projectedAQI}</p>
-        <p>Projected Temperature Rise: +${tempRise}°C</p>
-    `;
+    new Chart(document.getElementById("riskChart"), {
+        type: "doughnut",
+        data: {
+            datasets: [{
+                data: [risk, 100 - risk],
+                backgroundColor: ["#ef4444", "#475569"]
+            }]
+        },
+        options: { cutout: "75%" }
+    });
 
-    updateChart(projectedAQI);
-}
+    document.getElementById("aqiBox").innerHTML =
+        "<h3>Projected AQI</h3><p>" + projectedAQI + "</p>";
 
-function updateChart(aqi) {
-    const ctx = document.getElementById("chart").getContext("2d");
+    document.getElementById("tempBox").innerHTML =
+        "<h3>Temperature Rise</h3><p>+" + tempRise + "°C</p>";
 
-    if (climateChart) climateChart.destroy();
+    document.getElementById("statusBox").innerHTML =
+        "<h3>Environmental Outlook</h3><p>" +
+        (sustainability > 60 ? "Stable Future" :
+         sustainability > 40 ? "Moderate Risk" :
+         "Severe Instability") +
+        "</p>";
 
-    climateChart = new Chart(ctx, {
+    new Chart(document.getElementById("trendChart"), {
         type: "line",
         data: {
             labels: ["2026", "2028", "2030", "2032", "2035"],
             datasets: [{
-                label: "Projected AQI",
-                data: [80, 100, 140, 180, aqi],
-                borderColor: "#e74c3c",
+                label: "AQI Projection",
+                data: [90, 130, 160, 190, projectedAQI],
+                borderColor: "#0ea5e9",
                 tension: 0.4
             }]
-        },
-        options: {
-            plugins: {
-                legend: { labels: { color: "white" } }
-            },
-            scales: {
-                x: { ticks: { color: "white" } },
-                y: { ticks: { color: "white" } }
-            }
         }
     });
 }
+
