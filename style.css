@@ -1,119 +1,106 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #0f172a;
-    color: white;
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #111827;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 15px 40px;
-    background: #111827;
-    position: sticky;
-    top: 0;
+    padding: 20px 50px;
+    border-bottom: 1px solid #e5e7eb;
+    background: white;
 }
 
-nav ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-}
-
-nav a {
-    color: white;
+.nav-links a {
+    margin-left: 20px;
     text-decoration: none;
+    color: #111827;
 }
 
 .hero {
+    padding: 100px 20px;
     text-align: center;
-    padding: 120px 20px;
-    background: linear-gradient(90deg, #0ea5e9, #22c55e);
+    background: #111827;
+    color: white;
 }
 
 .hero button {
     padding: 12px 25px;
+    background: #2563eb;
     border: none;
-    background: white;
-    color: black;
-    font-weight: bold;
+    color: white;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
-.section {
+.problem, .product, .usecases {
     padding: 70px 20px;
     text-align: center;
 }
 
-.dark {
-    background: #111827;
-}
-
-.grid-4 {
+.feature-grid, .usecase-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-}
-
-.card {
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 12px;
-}
-
-.architecture {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.architecture div {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.scenario-grid {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
     margin-top: 40px;
 }
 
-.scenario {
-    padding: 30px;
-    border-radius: 15px;
-    width: 280px;
+.feature {
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
 }
 
-.green {
-    background: linear-gradient(135deg, #22c55e, #0ea5e9);
-    color: black;
+.demo {
+    padding: 70px 20px;
+    background: #f1f5f9;
 }
 
-.polluted {
-    background: linear-gradient(135deg, #ef4444, #7f1d1d);
+.dashboard {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-input, select {
+.input-panel {
+    width: 250px;
+}
+
+.input-panel input,
+.input-panel select {
+    width: 100%;
     padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    border: none;
+    margin-bottom: 20px;
 }
 
-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-weight: bold;
+.input-panel button {
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.output-panel {
+    width: 500px;
+}
+
+.metric {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
 }
 
 footer {
     padding: 30px;
     text-align: center;
-    background: #111827;
+    border-top: 1px solid #e5e7eb;
 }
 
