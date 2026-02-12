@@ -1,68 +1,79 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #0f172a;
-    color: #f1f5f9;
-    scroll-behavior: smooth;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     padding: 15px 40px;
-    background: #111827;
-    position: sticky;
-    top: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
 }
 
 nav ul {
-    list-style: none;
     display: flex;
     gap: 20px;
+    list-style: none;
 }
 
 nav a {
-    color: #f1f5f9;
+    color: white;
     text-decoration: none;
-}
-
-.logo {
-    font-weight: bold;
 }
 
 .hero {
     text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(to right, #0ea5e9, #22c55e);
-    color: white;
+    padding: 120px 20px;
+    background: linear-gradient(90deg, #0ea5e9, #22c55e, #8b5cf6);
 }
 
 .cta {
     background: white;
     color: black;
-    padding: 10px 20px;
+    padding: 12px 25px;
+    border-radius: 30px;
     text-decoration: none;
-    border-radius: 5px;
+    font-weight: bold;
 }
 
 .section {
-    padding: 60px 20px;
+    padding: 70px 20px;
     text-align: center;
 }
 
 .dark {
-    background: #1e293b;
+    background: #111827;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #1e293b, #334155);
+    padding: 30px;
+    border-radius: 15px;
+    width: 220px;
 }
 
 .simulator-container {
     display: flex;
+    gap: 40px;
     flex-wrap: wrap;
-    gap: 30px;
     justify-content: center;
 }
 
-.controls {
-    width: 300px;
+.glass {
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
 }
 
 .controls input {
@@ -72,43 +83,51 @@ nav a {
 
 .controls button {
     width: 100%;
-    padding: 10px;
-    background: #22c55e;
+    padding: 12px;
+    background: linear-gradient(90deg, #22c55e, #0ea5e9);
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.results {
-    display: flex;
-    gap: 20px;
-}
-
-.card {
-    background: #334155;
-    padding: 20px;
-    border-radius: 10px;
-    width: 250px;
-}
-
 .dashboard-grid {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
 }
 
 .info-card {
-    background: #1e293b;
+    background: linear-gradient(145deg, #1e293b, #334155);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
+}
+
+.comparison-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.compare-card {
+    padding: 25px;
+    border-radius: 15px;
     width: 250px;
 }
 
+.current {
+    background: #334155;
+}
+
+.future {
+    background: linear-gradient(145deg, #0ea5e9, #22c55e);
+    color: black;
+}
+
 footer {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
     background: #111827;
 }
-
