@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
+    background: #0f172a;
     color: white;
 }
 
@@ -9,8 +9,9 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 15px 40px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
+    background: #111827;
+    position: sticky;
+    top: 0;
 }
 
 nav ul {
@@ -27,16 +28,17 @@ nav a {
 .hero {
     text-align: center;
     padding: 120px 20px;
-    background: linear-gradient(90deg, #0ea5e9, #22c55e, #8b5cf6);
+    background: linear-gradient(90deg, #0ea5e9, #22c55e);
 }
 
-.cta {
+.hero button {
+    padding: 12px 25px;
+    border: none;
     background: white;
     color: black;
-    padding: 12px 25px;
-    border-radius: 30px;
-    text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 .section {
@@ -48,86 +50,70 @@ nav a {
     background: #111827;
 }
 
-.stats-grid {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.stat-card {
-    background: linear-gradient(145deg, #1e293b, #334155);
-    padding: 30px;
-    border-radius: 15px;
-    width: 220px;
-}
-
-.simulator-container {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.glass {
-    background: rgba(255,255,255,0.08);
-    padding: 25px;
-    border-radius: 15px;
-    backdrop-filter: blur(15px);
-}
-
-.controls input {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.controls button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(90deg, #22c55e, #0ea5e9);
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.dashboard-grid {
+.grid-4 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
 
-.info-card {
-    background: linear-gradient(145deg, #1e293b, #334155);
-    padding: 20px;
+.card {
+    background: #1e293b;
+    padding: 25px;
     border-radius: 12px;
 }
 
-.comparison-grid {
+.architecture {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.architecture div {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.scenario-grid {
     display: flex;
     gap: 30px;
     justify-content: center;
-    margin-top: 40px;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 
-.compare-card {
-    padding: 25px;
+.scenario {
+    padding: 30px;
     border-radius: 15px;
-    width: 250px;
+    width: 280px;
 }
 
-.current {
-    background: #334155;
-}
-
-.future {
-    background: linear-gradient(145deg, #0ea5e9, #22c55e);
+.green {
+    background: linear-gradient(135deg, #22c55e, #0ea5e9);
     color: black;
 }
 
+.polluted {
+    background: linear-gradient(135deg, #ef4444, #7f1d1d);
+}
+
+input, select {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
 footer {
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     background: #111827;
 }
+
