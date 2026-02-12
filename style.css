@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #27ae60;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e8449;
+}
+
+#scoreBox {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.low-risk {
+    background: rgba(39, 174, 96, 0.3);
+}
+
+.medium-risk {
+    background: rgba(241, 196, 15, 0.3);
+}
+
+.high-risk {
+    background: rgba(231, 76, 60, 0.3);
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
