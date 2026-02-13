@@ -16,38 +16,29 @@ function simulate() {
   const diet = document.getElementById("diet").value;
   const year = Number(document.getElementById("year").value);
 
-  const ev = document.getElementById("ev").checked;
-  const renew = document.getElementById("renew").checked;
-  const trees = document.getElementById("trees").checked;
-
   const base = countryData[country];
 
-  let dietImpact = diet === "meat" ? 40 :
-                   diet === "mixed" ? 15 :
-                   diet === "vegetarian" ? -10 : -20;
+  const dietImpact =
+    diet === "meat" ? 40 :
+    diet === "mixed" ? 15 :
+    diet === "vegetarian" ? -10 : -20;
 
-  let carbon = travel * 0.4 + electricity * 0.05 + dietImpact;
-
-  if (ev) carbon -= 25;
-  if (renew) carbon -= 35;
-  if (trees) carbon -= 20;
-
-  carbon = Math.max(10, carbon);
+  const carbon = travel * 0.4 + electricity * 0.05 + dietImpact;
 
   const yearsAhead = year - 2025;
 
-  const tempRise = base.baseTemp + (carbon / 140) * (yearsAhead / 4);
+  const tempRise = base.baseTemp + (carbon / 150) * (yearsAhead / 4);
   const aqi = Math.round(base.baseAQI + carbon);
-  const risk = Math.min(100, Math.round((aqi / 3) + tempRise * 6));
+  const riskIndex = Math.min(100, Math.round((aqi / 3) + tempRise * 6));
   const sustainability = Math.max(0, 100 - carbon);
 
-  updateKPIs(tempRise, aqi, risk, sustainability);
+  updateKPIs(tempRise, aqi, riskIndex, sustainability);
   updateCharts(carbon, tempRise);
 }
 
 function updateKPIs(temp, aqi, risk, sustain) {
 
-  const kpis = [
+  const metrics = [
     ["Temperature Rise", "+" + temp.toFixed(2) + "°C"],
     ["Projected AQI", aqi],
     ["Climate Risk Index", risk + "/100"],
@@ -57,11 +48,11 @@ function updateKPIs(temp, aqi, risk, sustain) {
   const grid = document.getElementById("kpiGrid");
   grid.innerHTML = "";
 
-  kpis.forEach(k => {
+  metrics.forEach(m => {
     grid.innerHTML += `
       <div class="kpi-card">
-        <h4>${k[0]}</h4>
-        <p>${k[1]}</p>
+        <h4>${m[0]}</h4>
+        <p>${m[1]}</p>
       </div>
     `;
   });
@@ -77,9 +68,9 @@ function updateCharts(carbon, tempRise) {
     data: {
       labels: ['2025','2035','2045','2055','2070'],
       datasets: [{
-        label: 'Temperature Rise',
+        label: "Temperature Rise",
         data: [0.8, tempRise/2, tempRise, tempRise*1.2, tempRise*1.4],
-        borderColor: '#00ffcc',
+        borderColor: '#6366f1',
         tension: 0.4
       }]
     }
@@ -88,10 +79,10 @@ function updateCharts(carbon, tempRise) {
   pieChart = new Chart(document.getElementById("pieChart"), {
     type: 'doughnut',
     data: {
-      labels: ['Carbon Load', 'Remaining Budget'],
+      labels: ['Carbon Used', 'Remaining Budget'],
       datasets: [{
         data: [carbon, 100-carbon],
-        backgroundColor: ['#ff4d4d','#00ffcc']
+        backgroundColor: ['#ef4444','#10b981']
       }]
     }
   });
