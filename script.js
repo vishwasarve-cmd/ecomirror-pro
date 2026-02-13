@@ -18,61 +18,48 @@ function simulate() {
 
   const base = countryData[country];
 
-  let dietImpact = diet === "meat" ? 50 :
-                   diet === "mixed" ? 20 :
-                   diet === "vegetarian" ? -10 : -25;
+  let dietImpact = diet === "meat" ? 40 :
+                   diet === "mixed" ? 15 :
+                   diet === "vegetarian" ? -10 : -20;
 
-  const travelImpact = travel * 0.4;
-  const electricityImpact = electricity * 0.06;
+  const travelImpact = travel * 0.35;
+  const electricityImpact = electricity * 0.05;
 
-  const totalCarbon = travelImpact + electricityImpact + dietImpact;
+  const carbonScore = travelImpact + electricityImpact + dietImpact;
 
   const yearsAhead = year - 2025;
 
-  const tempRise = base.baseTemp + (totalCarbon / 120) * (yearsAhead / 5);
-  const aqi = Math.round(base.baseAQI + totalCarbon);
+  const tempRise = base.baseTemp + (carbonScore / 150) * (yearsAhead / 4);
+  const aqi = Math.round(base.baseAQI + carbonScore);
+  const heatDays = Math.round(tempRise * 10);
+  const greenCover = Math.max(20, 100 - carbonScore);
+  const riskIndex = Math.min(100, Math.round((aqi / 3) + tempRise * 6));
 
-  const heatDays = Math.round(tempRise * 12);
-  const floodRisk = Math.min(100, Math.round(tempRise * 15));
-  const greenCover = Math.max(10, 100 - totalCarbon);
+  const metrics = [
+    ["Temperature Rise", "+" + tempRise.toFixed(2) + "°C"],
+    ["Projected AQI", aqi],
+    ["Extreme Heat Days", heatDays],
+    ["Green Cover", greenCover + "%"],
+    ["Climate Risk Index", riskIndex + "/100"]
+  ];
 
-  const sustainabilityScore = Math.max(0, 100 - totalCarbon);
-  const riskIndex = Math.min(100, Math.round((aqi / 4) + tempRise * 8));
+  const grid = document.getElementById("metricsGrid");
+  grid.innerHTML = "";
 
-  const asthmaRisk = Math.min(100, Math.round(aqi / 3));
-  const economicLoss = Math.round(tempRise * 50);
+  metrics.forEach(m => {
+    grid.innerHTML += `
+      <div class="metric-card">
+        <h4>${m[0]}</h4>
+        <p>${m[1]}</p>
+      </div>
+    `;
+  });
 
-  const carbonBudget = Math.max(0, Math.round(20 - tempRise * 3));
-
-  const resultsGrid = document.getElementById("resultsGrid");
-
-  resultsGrid.innerHTML = `
-    ${card("🌡 Temperature Rise", "+" + tempRise.toFixed(2) + "°C")}
-    ${card("🌫 AQI Projection", aqi)}
-    ${card("🔥 Extreme Heat Days", heatDays)}
-    ${card("🌊 Flood Risk %", floodRisk + "%")}
-    ${card("🌳 Green Cover", greenCover + "%")}
-    ${card("⚠ Climate Risk Index", riskIndex + "/100")}
-    ${card("🟢 Sustainability Score", sustainabilityScore + "/100")}
-    ${card("🫁 Asthma Risk", asthmaRisk + "%")}
-    ${card("💰 Economic Loss (B$)", economicLoss)}
-    ${card("⏳ Carbon Budget Left (yrs)", carbonBudget)}
-  `;
-
-  generatePieChart(travelImpact, electricityImpact, dietImpact);
-  generateLineChart(tempRise);
+  updatePieChart(travelImpact, electricityImpact, dietImpact);
+  updateLineChart(tempRise);
 }
 
-function card(title, value) {
-  return `
-    <div class="metric-card">
-      <h3>${title}</h3>
-      <p>${value}</p>
-    </div>
-  `;
-}
-
-function generatePieChart(travel, electricity, diet) {
+function updatePieChart(travel, electricity, diet) {
   if (pieChart) pieChart.destroy();
 
   pieChart = new Chart(document.getElementById("pieChart"), {
@@ -87,31 +74,23 @@ function generatePieChart(travel, electricity, diet) {
   });
 }
 
-function generateLineChart(tempRise) {
+function updateLineChart(tempRise) {
   if (lineChart) lineChart.destroy();
 
   lineChart = new Chart(document.getElementById("lineChart"), {
     type: 'line',
     data: {
-      labels: ['2025', '2035', '2045', '2055', '2070'],
+      labels: ['2025','2035','2045','2055','2070'],
       datasets: [{
-        label: 'Temperature Rise (°C)',
-        data: [
-          0.8,
-          tempRise / 2,
-          tempRise,
-          tempRise * 1.2,
-          tempRise * 1.4
-        ],
+        label: "Temperature Rise (°C)",
+        data: [0.8, tempRise/2, tempRise, tempRise*1.1, tempRise*1.3],
         borderColor: '#10b981',
         borderWidth: 3,
-        tension: 0.4,
-        fill: false
+        tension: 0.4
       }]
     }
   });
 }
-
 
 
 
