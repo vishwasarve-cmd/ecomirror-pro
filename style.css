@@ -1,78 +1,71 @@
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
+    background: #0f2027;
     color: white;
     text-align: center;
 }
 
-.container {
+.hero {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #203a43, #2c5364);
+}
+
+.controls {
+    margin: 30px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    margin-left: 10px;
+    background: #00c6ff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0096c7;
+}
+
+.dashboard {
     padding: 40px;
 }
 
-h1 {
-    font-size: 40px;
-    letter-spacing: 2px;
-}
-
-.subtitle {
-    opacity: 0.7;
-    margin-bottom: 30px;
-}
-
-.controls select,
-.controls button {
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    margin: 10px;
-}
-
-.controls button {
-    background: linear-gradient(45deg, #00f260, #0575e6);
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.wheel-wrapper {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 40px auto;
-}
-
-.wheel-svg {
-    transform: rotate(45deg);
-    filter: drop-shadow(0px 0px 15px rgba(0,255,255,0.5));
-}
-
-.center-core {
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 30px rgba(0,255,255,0.4);
-}
-
-.center-core span {
-    font-size: 28px;
-    font-weight: bold;
-}
-
 .charts {
-    width: 80%;
-    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
+
+canvas {
+    max-width: 400px;
+}
+
+.metrics {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1f2c3a;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 200px;
+}
+
 
 
 
