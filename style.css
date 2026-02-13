@@ -1,79 +1,69 @@
 body {
-    margin: 0;
-    font-family: Arial;
-    background: #0f172a;
-    color: white;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  padding: 40px;
+  transition: background 1s ease;
 }
 
-header {
-    text-align: center;
-    padding: 40px;
-    background: linear-gradient(90deg, #0f172a, #1e293b);
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #10b981;
 }
 
-.controls {
-    display: flex;
-    gap: 20px;
-    padding: 30px 10%;
-    flex-wrap: wrap;
+.container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    flex: 1;
-    min-width: 250px;
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 12px;
+  width: 350px;
+  transition: all 1s ease;
 }
 
-select, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+input, select {
+  width: 100%;
+  margin-top: 5px;
+  padding: 6px;
 }
 
 button {
-    background: #00c853;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.dashboard {
-    display: flex;
-    justify-content: space-around;
-    padding: 40px 10%;
-    flex-wrap: wrap;
+button:hover {
+  background: #059669;
 }
 
-.metric {
-    text-align: center;
+/* Green Future */
+.green-bg {
+  background: linear-gradient(to right, #065f46, #10b981);
 }
 
-.scoreCircle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: conic-gradient(green 0deg, red 0deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    font-size: 22px;
-    font-weight: bold;
+/* Polluted Future */
+.polluted-bg {
+  background: linear-gradient(to right, #1f2937, #7f1d1d);
 }
 
-.chartSection {
-    padding: 40px 10%;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #1e293b;
-}
 
 
 
