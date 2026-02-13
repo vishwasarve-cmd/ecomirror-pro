@@ -1,109 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>EcoMirror - AI That Shows Your Future Earth</title>
+    <title>EcoMirror - Climate Intelligence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <div class="logo">EcoMirror</div>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#how">How It Works</a>
-        <a href="#simulator">Simulator</a>
-        <a href="#future">Future</a>
-    </nav>
+    <h1>EcoMirror</h1>
+    <p>Climate Decision Intelligence Platform</p>
 </header>
 
-<section class="hero">
-    <h1>AI That Shows Your Future Earth</h1>
-    <p>Visualising tomorrow's environmental reality through today's actions.</p>
-    <button onclick="scrollToSection('about')">Explore Now</button>
+<section class="controls">
+
+    <div class="card">
+        <h2>Select City</h2>
+        <select id="city">
+            <option value="3.8">Chennai</option>
+            <option value="3.5">Mumbai</option>
+            <option value="4.2">Delhi</option>
+            <option value="3.0">Bangalore</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h2>Policy Interventions</h2>
+        <label><input type="checkbox" id="solar"> Solar Expansion</label>
+        <label><input type="checkbox" id="metro"> Metro Expansion</label>
+        <label><input type="checkbox" id="trees"> Urban Forest Program</label>
+        <label><input type="checkbox" id="tax"> Carbon Tax</label>
+        <button onclick="updateSimulation()">Run Simulation</button>
+    </div>
+
 </section>
 
-<section id="about">
-    <h2>The Urgent Crisis</h2>
-    <p>
-        EcoMirror connects daily human behaviour with long-term environmental
-        consequences using AI-driven predictive simulation models.
-    </p>
-</section>
+<section class="dashboard">
 
-<section id="how">
-    <h2>How EcoMirror Works</h2>
-
-    <div class="card-container">
-        <div class="card">
-            <h3>Data Collection</h3>
-            <p>Satellite imagery, IoT sensors, public datasets.</p>
-        </div>
-
-        <div class="card">
-            <h3>AI Processing</h3>
-            <p>Multi-layer ML models trained on climate data.</p>
-        </div>
-
-        <div class="card">
-            <h3>Future Simulation</h3>
-            <p>Generates 5, 10, 25, 50 year predictions.</p>
-        </div>
-
-        <div class="card">
-            <h3>Visual Output</h3>
-            <p>Transforms complex data into engaging visuals.</p>
+    <div class="metric">
+        <h3>Climate Stability Score</h3>
+        <div class="scoreCircle" id="scoreCircle">
+            <span id="scoreValue">--</span>
         </div>
     </div>
+
+    <div class="metric">
+        <h3>Projected Temperature Rise (2050)</h3>
+        <p id="temp">-- °C</p>
+    </div>
+
 </section>
 
-<section id="simulator">
-    <h2>Intervention Simulator</h2>
-    <p>Adjust Renewable Energy Adoption (%)</p>
-
-    <input type="range" min="0" max="100" value="20" id="energySlider">
-    <div class="result" id="simulationResult">
-        Future Temperature Rise: +3.5°C
-    </div>
-</section>
-
-<section id="future">
-    <h2>Two Paths Forward</h2>
-
-    <div class="future-container">
-        <div class="green">
-            <h3>Green Future 🌱</h3>
-            <ul>
-                <li>80% Renewable Energy</li>
-                <li>Cleaner Air</li>
-                <li>Carbon Emissions -65%</li>
-            </ul>
-        </div>
-
-        <div class="polluted">
-            <h3>Polluted Scenario ☠️</h3>
-            <ul>
-                <li>Fossil Fuel Dependency</li>
-                <li>Urban Heat Crisis</li>
-                <li>Ecosystem Collapse</li>
-            </ul>
-        </div>
-    </div>
+<section class="chartSection">
+    <canvas id="climateChart"></canvas>
 </section>
 
 <footer>
-    <p>EcoMirror © 2026 | Transforming Prediction into Prevention</p>
+    EcoMirror | Hackathon Climate Intelligence Engine
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
