@@ -4,102 +4,54 @@
 <meta charset="UTF-8">
 <title>EcoMirror AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-<div class="container">
-
+<section class="hero">
     <h1>EcoMirror AI</h1>
-    <p class="subtitle">2045 Climate Projection Engine</p>
+    <p>AI Climate Projection Based on Country Selection</p>
+</section>
 
-    <div class="controls">
-        <select id="country">
-            <option>India</option>
-            <option>USA</option>
-            <option>China</option>
-            <option>Germany</option>
-            <option>Brazil</option>
-            <option>Australia</option>
-        </select>
-        <button onclick="predict()">Run Projection</button>
-    </div>
+<section class="controls">
+    <select id="countrySelect">
+        <option>Loading countries...</option>
+    </select>
+    <button onclick="runProjection()">Run Projection</button>
+</section>
 
-    <!-- 3D Curved Climate Wheel -->
-    <div class="wheel-wrapper">
-        <svg viewBox="0 0 300 300" class="wheel-svg">
-
-            <!-- Segment 1 -->
-            <circle cx="150" cy="150" r="100"
-                stroke="url(#grad1)"
-                stroke-width="40"
-                fill="none"
-                stroke-dasharray="157 471"
-                transform="rotate(-90 150 150)" />
-
-            <!-- Segment 2 -->
-            <circle cx="150" cy="150" r="100"
-                stroke="url(#grad2)"
-                stroke-width="40"
-                fill="none"
-                stroke-dasharray="157 471"
-                transform="rotate(0 150 150)" />
-
-            <!-- Segment 3 -->
-            <circle cx="150" cy="150" r="100"
-                stroke="url(#grad3)"
-                stroke-width="40"
-                fill="none"
-                stroke-dasharray="157 471"
-                transform="rotate(90 150 150)" />
-
-            <!-- Segment 4 -->
-            <circle cx="150" cy="150" r="100"
-                stroke="url(#grad4)"
-                stroke-width="40"
-                fill="none"
-                stroke-dasharray="157 471"
-                transform="rotate(180 150 150)" />
-
-            <!-- Gradients -->
-            <defs>
-                <linearGradient id="grad1">
-                    <stop offset="0%" stop-color="#00f260"/>
-                    <stop offset="100%" stop-color="#0575e6"/>
-                </linearGradient>
-                <linearGradient id="grad2">
-                    <stop offset="0%" stop-color="#ff512f"/>
-                    <stop offset="100%" stop-color="#dd2476"/>
-                </linearGradient>
-                <linearGradient id="grad3">
-                    <stop offset="0%" stop-color="#36d1dc"/>
-                    <stop offset="100%" stop-color="#5b86e5"/>
-                </linearGradient>
-                <linearGradient id="grad4">
-                    <stop offset="0%" stop-color="#f7971e"/>
-                    <stop offset="100%" stop-color="#ffd200"/>
-                </linearGradient>
-            </defs>
-
-        </svg>
-
-        <div class="center-core">
-            <span id="tempVal">--</span>
-            <small>Temp Rise</small>
-        </div>
-
-    </div>
+<section class="dashboard">
 
     <div class="charts">
+        <canvas id="pieChart"></canvas>
         <canvas id="lineChart"></canvas>
     </div>
 
-</div>
+    <div class="metrics">
+        <div class="card">
+            <h3>Temperature Rise</h3>
+            <p id="tempValue">--</p>
+        </div>
+        <div class="card">
+            <h3>Air Quality Index</h3>
+            <p id="aqiValue">--</p>
+        </div>
+        <div class="card">
+            <h3>Carbon Emissions</h3>
+            <p id="carbonValue">--</p>
+        </div>
+    </div>
+
+</section>
 
 <script src="script.js"></script>
+
 </body>
 </html>
+
 
 
 
