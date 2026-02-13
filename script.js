@@ -1,4 +1,5 @@
-let pieChart, lineChart;
+let pieChart = null;
+let lineChart = null;
 
 function predict() {
 
@@ -8,11 +9,9 @@ function predict() {
   const renewable = document.getElementById("renewable").value;
 
   let score = 50;
-
   score += transport === "Low" ? 10 : -10;
   score += industry === "Low" ? 10 : -10;
   score += renewable === "High" ? 20 : -15;
-
   score = Math.max(0, Math.min(100, score));
 
   const temperature = ((100 - score) / 20).toFixed(1);
@@ -33,22 +32,33 @@ function predict() {
   document.getElementById("carbon").innerHTML = carbon;
   document.getElementById("health").innerHTML = healthRisk;
 
-  document.getElementById("temp-status").innerText =
-    temperature > 3 ? "Extreme warming" : "Controlled";
+  document.getElementById("scoreValue").innerHTML = score;
 
-  document.getElementById("aqi-status").innerText =
-    aqi > 200 ? "Unhealthy" : "Acceptable";
+  // Animate score circle
+  document.querySelector(".score-circle").style.background =
+    `conic-gradient(#22c55e ${score}%, #e5e7eb ${score}%)`;
 
-  document.getElementById("sea-status").innerText =
-    sea > 20 ? "High risk" : "Moderate";
+  // Progress bars
+  document.getElementById("temp-bar").style.width = (temperature * 20) + "%";
+  document.getElementById("aqi-bar").style.width = (aqi / 3.5) + "%";
+  document.getElementById("sea-bar").style.width = (sea * 2.5) + "%";
+  document.getElementById("carbon-bar").style.width = carbon + "%";
 
-  document.getElementById("carbon-status").innerText =
-    carbon > 60 ? "High emission" : "Sustainable";
-
-  document.getElementById("health-status").innerText =
-    healthRisk === "High" ? "Public health risk" : "Stable";
+  // Apply dynamic card colors
+  applyCardColor("temp-card", temperature > 3 ? "bad" : "good");
+  applyCardColor("aqi-card", aqi > 200 ? "bad" : "medium");
+  applyCardColor("sea-card", sea > 20 ? "bad" : "medium");
+  applyCardColor("carbon-card", carbon > 60 ? "bad" : "good");
+  applyCardColor("health-card", healthRisk === "High" ? "bad" : "good");
 
   createCharts(aqi, temperature);
+}
+
+function applyCardColor(id, status) {
+  const card = document.getElementById(id);
+  if (!card) return;
+  card.classList.remove("good", "medium", "bad");
+  card.classList.add(status);
 }
 
 function createCharts(aqi, temperature) {
@@ -56,12 +66,15 @@ function createCharts(aqi, temperature) {
   if (pieChart) pieChart.destroy();
   if (lineChart) lineChart.destroy();
 
+  const cleanAir = Math.max(10, 100 - (aqi / 3.5));
+  const pollution = 100 - cleanAir;
+
   pieChart = new Chart(document.getElementById("pieChart"), {
     type: "pie",
     data: {
-      labels: ["Clean Air", "Pollution"],
+      labels: ["Clean Air %", "Pollution %"],
       datasets: [{
-        data: [100 - (aqi/3.5), aqi/3.5],
+        data: [cleanAir, pollution],
         backgroundColor: ["#22c55e", "#ef4444"]
       }]
     }
@@ -73,7 +86,7 @@ function createCharts(aqi, temperature) {
       labels: ["2025", "2030", "2035", "2040", "2045"],
       datasets: [{
         label: "Temperature Rise (°C)",
-        data: [1, 1.5, 2, 2.8, temperature],
+        data: [1, 1.5, 2.2, 3, parseFloat(temperature)],
         borderColor: "#3b82f6",
         backgroundColor: "rgba(59,130,246,0.2)",
         fill: true,
