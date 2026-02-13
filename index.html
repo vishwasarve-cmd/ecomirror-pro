@@ -1,65 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>EcoMirror – Climate Future Simulator</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<div class="card">
+  <h2>Enter Simulation Data</h2>
 
-<h1>🌍 EcoMirror – Climate Future Simulator</h1>
+  <label>🌍 Select Country</label>
+  <select id="country">
+    <option value="india">India</option>
+    <option value="germany">Germany</option>
+    <option value="usa">USA</option>
+    <option value="singapore">Singapore</option>
+    <option value="brazil">Brazil</option>
+  </select>
 
-<div class="container">
+  <label>🚗 Daily Travel (km)</label>
+  <input type="number" id="travel" value="20">
 
-  <!-- INPUT SECTION -->
-  <div class="card">
-    <h2>Enter Your Lifestyle</h2>
+  <label>⚡ Monthly Electricity (kWh)</label>
+  <input type="number" id="electricity" value="300">
 
-    <label>🚗 Daily Travel (km)</label>
-    <input type="range" min="0" max="100" value="20" id="travel">
+  <label>🥩 Diet Type</label>
+  <select id="diet">
+    <option value="meat">Meat</option>
+    <option value="mixed">Mixed</option>
+    <option value="vegetarian">Vegetarian</option>
+    <option value="vegan">Vegan</option>
+  </select>
 
-    <label>⚡ Monthly Electricity (kWh)</label>
-    <input type="range" min="0" max="1000" value="300" id="electricity">
+  <label>📅 Future Year</label>
+  <select id="year">
+    <option value="2030">2030</option>
+    <option value="2045">2045</option>
+    <option value="2070">2070</option>
+  </select>
 
-    <label>🥩 Diet</label>
-    <select id="diet">
-      <option value="meat">Meat</option>
-      <option value="mixed">Mixed</option>
-      <option value="vegetarian">Vegetarian</option>
-      <option value="vegan">Vegan</option>
-    </select>
-
-    <label>📅 Select Future Year</label>
-    <select id="year">
-      <option value="2030">2030</option>
-      <option value="2045">2045</option>
-      <option value="2070">2070</option>
-    </select>
-
-    <button onclick="simulate()">Simulate Future</button>
-  </div>
-
-  <!-- POLICY TOGGLES -->
-  <div class="card">
-    <h2>🌱 What If Policies</h2>
-
-    <label><input type="checkbox" id="ev"> Switch to EV</label>
-    <label><input type="checkbox" id="trees"> Plant 1M Trees</label>
-    <label><input type="checkbox" id="renewable"> 60% Renewable Energy</label>
-    <label><input type="checkbox" id="emissionLaw"> Strict Emission Law</label>
-
-  </div>
-
-  <!-- RESULT SECTION -->
-  <div class="card" id="result">
-    <h2>Future Results</h2>
-    <div id="output"></div>
-  </div>
-
+  <button onclick="simulate()">Run Simulation</button>
 </div>
-
-<script src="script.js"></script>
-</body>
-</html>
 
 
 
