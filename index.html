@@ -8,71 +8,85 @@
 </head>
 <body>
 
-<div class="dashboard">
+<div class="wrapper">
 
-  <!-- LEFT PANEL -->
-  <div class="sidebar">
-    <h2>EcoMirror</h2>
-    <p>AI Climate Simulation</p>
+  <header>
+    <h1>EcoMirror</h1>
+    <p>Climate Intelligence & Future Projection Platform</p>
+  </header>
 
-    <label>Country</label>
-    <select id="country">
-      <option value="india">India</option>
-      <option value="germany">Germany</option>
-      <option value="usa">USA</option>
-      <option value="singapore">Singapore</option>
-      <option value="brazil">Brazil</option>
-    </select>
+  <section class="controls-card">
+    <div class="controls-grid">
 
-    <label>Daily Travel (km)</label>
-    <input type="number" id="travel" value="20">
+      <div class="field">
+        <label>Country</label>
+        <select id="country">
+          <option value="india">India</option>
+          <option value="germany">Germany</option>
+          <option value="usa">USA</option>
+          <option value="singapore">Singapore</option>
+          <option value="brazil">Brazil</option>
+        </select>
+      </div>
 
-    <label>Electricity (kWh)</label>
-    <input type="number" id="electricity" value="300">
+      <div class="field">
+        <label>Daily Travel (km)</label>
+        <input type="number" id="travel" value="20">
+      </div>
 
-    <label>Diet</label>
-    <select id="diet">
-      <option value="meat">Meat</option>
-      <option value="mixed">Mixed</option>
-      <option value="vegetarian">Vegetarian</option>
-      <option value="vegan">Vegan</option>
-    </select>
+      <div class="field">
+        <label>Electricity (kWh)</label>
+        <input type="number" id="electricity" value="300">
+      </div>
 
-    <label>Future Year</label>
-    <select id="year">
-      <option value="2030">2030</option>
-      <option value="2045">2045</option>
-      <option value="2070">2070</option>
-    </select>
+      <div class="field">
+        <label>Diet</label>
+        <select id="diet">
+          <option value="meat">Meat</option>
+          <option value="mixed">Mixed</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+        </select>
+      </div>
 
-    <button onclick="simulate()">Run Simulation</button>
+      <div class="field">
+        <label>Future Year</label>
+        <select id="year">
+          <option value="2030">2030</option>
+          <option value="2045">2045</option>
+          <option value="2070">2070</option>
+        </select>
+      </div>
 
-    <hr>
+      <div class="field button-field">
+        <button onclick="simulate()">Run Simulation</button>
+      </div>
 
-    <h3>🌱 Sustainable Mode</h3>
-    <label><input type="checkbox" id="ev"> EV Adoption</label>
-    <label><input type="checkbox" id="renew"> 60% Renewable</label>
-    <label><input type="checkbox" id="trees"> Mass Tree Plantation</label>
+    </div>
+  </section>
 
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="main">
-
+  <section class="kpi-section">
     <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
 
-    <div class="charts">
+  <section class="charts-section">
+    <div class="chart-card">
+      <h3>Temperature Forecast</h3>
       <canvas id="lineChart"></canvas>
-      <canvas id="pieChart"></canvas>
     </div>
 
-  </div>
+    <div class="chart-card small-chart">
+      <h3>Carbon Allocation</h3>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </section>
 
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
