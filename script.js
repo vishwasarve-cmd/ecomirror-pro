@@ -40,6 +40,10 @@ function predict() {
   document.getElementById("aqi-bar").style.width = (aqi / 3.5) + "%";
   document.getElementById("sea-bar").style.width = (sea * 2.5) + "%";
   document.getElementById("carbon-bar").style.width = carbon + "%";
+  document.getElementById("wheel-temp").innerHTML = temperature + "°C";
+document.getElementById("wheel-aqi").innerHTML = aqi;
+document.getElementById("wheel-sea").innerHTML = sea + " cm";
+document.getElementById("wheel-carbon").innerHTML = carbon;
 
   applyColor("temp-card", temperature > 3 ? "bad" : "good");
   applyColor("aqi-card", aqi > 200 ? "bad" : "medium");
