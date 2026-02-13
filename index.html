@@ -1,75 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror AI | Future Earth Intelligence</title>
+<title>EcoMirror AI</title>
 
-<link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
+}
+
+section {
+  padding: 80px 20px;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+button {
+  padding: 12px 25px;
+  background: #00ffae;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.stat {
+  font-size: 3rem;
+  color: #00ffae;
+}
+
+.sim-box {
+  max-width: 600px;
+  margin: auto;
+}
+
+input[type=range] {
+  width: 100%;
+}
+
+canvas {
+  max-width: 600px;
+  margin: auto;
+}
+</style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>EcoMirror</h1>
-    <p>AI That Shows Your Future Earth</p>
-    <button id="exploreBtn">Explore Simulation</button>
-  </div>
+<section>
+  <h1>EcoMirror</h1>
+  <p>AI That Shows Your Future Earth</p>
 </section>
 
-<!-- PROBLEM -->
-<section class="section dark">
-  <h2>The Climate Crisis Is Abstract.</h2>
-  <p>People see numbers. They don't see consequences.</p>
+<section>
+  <h2>Impact Metrics</h2>
+  <div class="stat" id="counter1">0</div>
+  <p>% Behaviour Change Increase</p>
 </section>
 
-<!-- SOLUTION -->
-<section class="section">
-  <h2>We Turn Data Into Future Reality</h2>
-  <div class="stats">
-    <div class="stat">
-      <h3 class="counter" data-target="43">0</h3>
-      <p>% Behaviour Change Increase</p>
-    </div>
-    <div class="stat">
-      <h3 class="counter" data-target="67">0</h3>
-      <p>% Climate Literacy Improvement</p>
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD -->
-<section class="section dark">
+<section>
   <h2>Future Emissions Projection</h2>
-  <canvas id="chartCanvas"></canvas>
+  <canvas id="chart"></canvas>
 </section>
 
-<!-- SIMULATOR -->
-<section class="section">
-  <h2>Policy Intervention Simulator</h2>
-
+<section>
+  <h2>Policy Simulator</h2>
   <div class="sim-box">
-    <label>Renewable Energy Adoption (%)</label>
+    <label>Renewable %</label>
     <input type="range" id="renewable" min="0" max="100" value="40">
-    <span id="renewableVal">40%</span>
-
-    <label>Urban Green Expansion (%)</label>
-    <input type="range" id="green" min="0" max="100" value="20">
-    <span id="greenVal">20%</span>
-
-    <button id="simulateBtn">Simulate Future</button>
-
-    <h3 id="simResult"></h3>
+    <span id="renewVal">40%</span>
+    <br><br>
+    <button onclick="simulate()">Simulate</button>
+    <h3 id="result"></h3>
   </div>
 </section>
 
-<footer>
-  <p>EcoMirror AI – Sustainability Hackathon Submission</p>
-</footer>
+<script>
+// Counter animation
+let counter = document.getElementById("counter1");
+let count = 0;
+let target = 43;
 
-<script src="script.js"></script>
+let interval = setInterval(() => {
+  if (count < target) {
+    count++;
+    counter.innerText = count;
+  } else {
+    clearInterval(interval);
+  }
+}, 30);
+
+// Chart
+new Chart(document.getElementById("chart"), {
+  type: "line",
+  data: {
+    labels: ["2025", "2030", "2040", "2050"],
+    datasets: [{
+      label: "Carbon Emissions (Gt)",
+      data: [35, 50, 70, 90],
+      borderColor: "#00ffae",
+      backgroundColor: "rgba(0,255,174,0.3)",
+      fill: true
+    }]
+  }
+});
+
+// Slider
+let slider = document.getElementById("renewable");
+let renewVal = document.getElementById("renewVal");
+
+slider.oninput = function() {
+  renewVal.innerText = this.value + "%";
+};
+
+function simulate() {
+  let value = slider.value;
+  let reduction = value * 0.6;
+  document.getElementById("result").innerText =
+    "Projected Carbon Reduction: " + reduction.toFixed(1) + "%";
+}
+</script>
+
 </body>
 </html>
 
