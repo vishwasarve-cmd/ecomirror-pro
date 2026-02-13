@@ -1,19 +1,5 @@
 let pieChart, barChart, lineChart;
 
-// Load all countries automatically
-fetch("https://restcountries.com/v3.1/all")
-  .then(res => res.json())
-  .then(data => {
-    const countrySelect = document.getElementById("country");
-    data.sort((a,b)=>a.name.common.localeCompare(b.name.common));
-    data.forEach(country => {
-      const option = document.createElement("option");
-      option.value = country.name.common;
-      option.textContent = country.name.common;
-      countrySelect.appendChild(option);
-    });
-  });
-
 function predict() {
 
   const country = document.getElementById("country").value;
@@ -34,7 +20,7 @@ function predict() {
 
   let temperature = score > 10 ? -1 : score < 0 ? 4 : 2;
   let aqi = score > 10 ? 60 : score < 0 ? 320 : 180;
-  let sea = score > 10 ? 4 : score < 0 ? 28 : 12;
+  let sea = score > 10 ? 4 : score < 0 ? 30 : 12;
 
   document.getElementById("form-section").classList.add("hidden");
   document.getElementById("result-section").classList.remove("hidden");
@@ -42,14 +28,14 @@ function predict() {
   document.getElementById("future-title").innerText =
     country + " Climate Outlook 2045";
 
-  document.getElementById("tempCard").innerHTML =
-    "🌡 Temperature Change<br><strong>" + temperature + "°C</strong>";
+  document.getElementById("temp").innerHTML =
+    "🌡 Temp: <strong>" + temperature + "°C</strong>";
 
-  document.getElementById("aqiCard").innerHTML =
-    "🌫 AQI Index<br><strong>" + aqi + "</strong>";
+  document.getElementById("aqi").innerHTML =
+    "🌫 AQI: <strong>" + aqi + "</strong>";
 
-  document.getElementById("seaCard").innerHTML =
-    "🌊 Sea Level Rise<br><strong>" + sea + " cm</strong>";
+  document.getElementById("sea").innerHTML =
+    "🌊 Sea Rise: <strong>" + sea + " cm</strong>";
 
   createCharts(aqi, renewable, temperature);
 }
@@ -63,7 +49,7 @@ function createCharts(aqi, renewable, temperature) {
   pieChart = new Chart(document.getElementById("pieChart"), {
     type: "pie",
     data: {
-      labels: ["Clean Air", "Polluted Air"],
+      labels: ["Clean Air", "Pollution"],
       datasets: [{
         data: [100 - (aqi/4), aqi/4],
         backgroundColor: ["#22c55e","#dc2626"]
@@ -76,7 +62,7 @@ function createCharts(aqi, renewable, temperature) {
     data: {
       labels: ["Transport","Industry","Energy"],
       datasets: [{
-        label: "Emission Impact",
+        label: "Emission Level",
         data: [30,40, renewable==="High"?20:60],
         backgroundColor: ["#3b82f6","#f97316","#10b981"]
       }]
@@ -101,6 +87,7 @@ function reset(){
   document.getElementById("result-section").classList.add("hidden");
   document.getElementById("form-section").classList.remove("hidden");
 }
+
 
 
 
