@@ -1,107 +1,80 @@
-let pieChart, lineChart;
-
-const countryData = {
-  india: { baseAQI: 120, baseTemp: 1.1, renewableFactor: 0.9 },
-  germany: { baseAQI: 40, baseTemp: 0.9, renewableFactor: 0.6 },
-  usa: { baseAQI: 60, baseTemp: 1.0, renewableFactor: 0.8 },
-  singapore: { baseAQI: 55, baseTemp: 1.2, renewableFactor: 0.7 },
-  brazil: { baseAQI: 50, baseTemp: 1.0, renewableFactor: 0.85 }
-};
-
-function simulate() {
-
-  const country = document.getElementById("country").value;
-  const travel = Number(document.getElementById("travel").value);
-  const electricity = Number(document.getElementById("electricity").value);
-  const diet = document.getElementById("diet").value;
-  const year = Number(document.getElementById("year").value);
-
-  const base = countryData[country];
-
-  let dietImpact = 0;
-
-  if (diet === "meat") dietImpact = 50;
-  if (diet === "mixed") dietImpact = 20;
-  if (diet === "vegetarian") dietImpact = -10;
-  if (diet === "vegan") dietImpact = -25;
-
-  const travelImpact = travel * 0.4;
-  const electricityImpact = electricity * 0.06;
-
-  const totalCarbon =
-    (travelImpact + electricityImpact + dietImpact) * base.renewableFactor;
-
-  const yearsAhead = year - 2025;
-
-  const tempRise =
-    base.baseTemp + (totalCarbon / 120) * (yearsAhead / 5);
-
-  const aqi = Math.round(base.baseAQI + totalCarbon);
-
-  const riskIndex = Math.min(
-    100,
-    Math.round((aqi / 4) + tempRise * 8)
-  );
-
-  document.getElementById("metrics").innerHTML = `
-    <p><strong>Country:</strong> ${country.toUpperCase()}</p>
-    <p>🌡 Temperature Rise: +${tempRise.toFixed(2)}°C</p>
-    <p>🌫 AQI Projection: ${aqi}</p>
-    <p>⚠ Climate Risk Index: ${riskIndex}/100</p>
-  `;
-
-  generatePieChart(travelImpact, electricityImpact, dietImpact);
-  generateLineChart(tempRise);
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  padding: 30px;
 }
 
-function generatePieChart(travel, electricity, diet) {
-
-  if (pieChart) pieChart.destroy();
-
-  pieChart = new Chart(document.getElementById("pieChart"), {
-    type: 'pie',
-    data: {
-      labels: ['Transport', 'Electricity', 'Diet'],
-      datasets: [{
-        data: [travel, electricity, Math.abs(diet)],
-        backgroundColor: ['#ef4444', '#f59e0b', '#10b981']
-      }]
-    }
-  });
+h1 {
+  text-align: center;
+  color: #10b981;
+  margin-bottom: 40px;
 }
 
-function generateLineChart(tempRise) {
+.container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  if (lineChart) lineChart.destroy();
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
 
-  lineChart = new Chart(document.getElementById("lineChart"), {
-    type: 'line',
-    data: {
-      labels: ['2025', '2035', '2045', '2055', '2070'],
-      datasets: [{
-        label: 'Temperature Rise (°C)',
-        data: [
-          0.8,
-          tempRise / 2,
-          tempRise,
-          tempRise * 1.2,
-          tempRise * 1.4
-        ],
-        borderColor: '#10b981',
-        borderWidth: 3,
-        tension: 0.4,
-        fill: false
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+label {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #059669;
+}
+
+#metrics p {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.charts {
+  margin-top: 50px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.chart-card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 450px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 
