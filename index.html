@@ -1,54 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>EcoMirror Global 🌍</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="overlay"></div>
 
 <div class="container">
 
   <h1>EcoMirror 🌍</h1>
-  <p class="tagline">Simulate Your Country’s Climate Future (2045)</p>
+  <p class="tagline">Global Climate Simulator – 2045</p>
 
-  <div class="glass-card" id="form-section">
+  <div class="card" id="form-section">
 
-    <select id="country"></select>
+    <select id="country">
+      <!-- Large stable country list -->
+      <option>India</option>
+      <option>United States</option>
+      <option>China</option>
+      <option>Brazil</option>
+      <option>Germany</option>
+      <option>United Kingdom</option>
+      <option>France</option>
+      <option>Japan</option>
+      <option>Canada</option>
+      <option>Australia</option>
+      <option>South Africa</option>
+      <option>Russia</option>
+      <option>Italy</option>
+      <option>Spain</option>
+      <option>Mexico</option>
+      <option>Indonesia</option>
+      <option>Saudi Arabia</option>
+      <option>Argentina</option>
+      <option>Norway</option>
+      <option>Sweden</option>
+    </select>
 
     <select id="transport">
-      <option value="High">High Fossil Fuel Transport</option>
+      <option value="High">High Fossil Transport</option>
       <option value="Medium">Mixed Transport</option>
       <option value="Low">EV & Public Focus</option>
     </select>
 
     <select id="industry">
-      <option value="High">Heavy Industrial Emissions</option>
+      <option value="High">Heavy Industry</option>
       <option value="Medium">Moderate Industry</option>
       <option value="Low">Green Industry</option>
     </select>
 
     <select id="renewable">
-      <option value="Low">Low Renewable Adoption</option>
+      <option value="Low">Low Renewable</option>
       <option value="Medium">Growing Renewable</option>
-      <option value="High">High Renewable Adoption</option>
+      <option value="High">High Renewable</option>
     </select>
 
-    <button onclick="predict()">Predict 2045</button>
+    <button onclick="predict()">Predict Future</button>
   </div>
 
   <div id="result-section" class="hidden">
 
     <h2 id="future-title"></h2>
 
-    <div class="stats-grid">
-      <div class="stat-card" id="tempCard"></div>
-      <div class="stat-card" id="aqiCard"></div>
-      <div class="stat-card" id="seaCard"></div>
+    <div class="stats">
+      <div id="temp"></div>
+      <div id="aqi"></div>
+      <div id="sea"></div>
     </div>
 
     <div class="charts">
