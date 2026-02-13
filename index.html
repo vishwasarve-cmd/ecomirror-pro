@@ -1,92 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>EcoMirror – Climate Intelligence</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoMirror AI | Future Earth Simulator</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
-<div class="wrapper">
+<header>
+  <div class="logo">🌍 EcoMirror AI</div>
+  <nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('dashboard')">Dashboard</a>
+    <a onclick="showSection('simulator')">Simulator</a>
+    <a onclick="showSection('impact')">Scenarios</a>
+    <a onclick="showSection('about')">Architecture</a>
+  </nav>
+</header>
 
-  <header>
-    <h1>EcoMirror</h1>
-    <p>Climate Intelligence & Future Projection Platform</p>
-  </header>
+<!-- HOME -->
+<section id="home" class="page active">
+  <h1>Visualising Tomorrow’s Environmental Reality</h1>
+  <p>AI-powered predictive intelligence that connects today’s actions with tomorrow’s Earth.</p>
+  <button onclick="showSection('dashboard')">Launch EcoMirror</button>
+</section>
 
-  <section class="controls-card">
-    <div class="controls-grid">
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+  <h2>Live AI Climate Dashboard</h2>
+  <canvas id="climateChart"></canvas>
 
-      <div class="field">
-        <label>Country</label>
-        <select id="country">
-          <option value="india">India</option>
-          <option value="germany">Germany</option>
-          <option value="usa">USA</option>
-          <option value="singapore">Singapore</option>
-          <option value="brazil">Brazil</option>
-        </select>
-      </div>
+  <div class="metrics">
+    <div>🌡 Temperature Rise: <span id="temp">1.2°C</span></div>
+    <div>🌫 AQI: <span id="aqi">92</span></div>
+    <div>🌊 Sea Level: <span id="sea">+12cm</span></div>
+  </div>
+</section>
 
-      <div class="field">
-        <label>Daily Travel (km)</label>
-        <input type="number" id="travel" value="20">
-      </div>
+<!-- SIMULATOR -->
+<section id="simulator" class="page">
+  <h2>Policy Intervention Simulator</h2>
 
-      <div class="field">
-        <label>Electricity (kWh)</label>
-        <input type="number" id="electricity" value="300">
-      </div>
+  <label>Renewable Adoption (%)</label>
+  <input type="range" min="0" max="100" value="40" id="renewable">
 
-      <div class="field">
-        <label>Diet</label>
-        <select id="diet">
-          <option value="meat">Meat</option>
-          <option value="mixed">Mixed</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-        </select>
-      </div>
+  <label>Urban Green Space (%)</label>
+  <input type="range" min="0" max="100" value="20" id="greenspace">
 
-      <div class="field">
-        <label>Future Year</label>
-        <select id="year">
-          <option value="2030">2030</option>
-          <option value="2045">2045</option>
-          <option value="2070">2070</option>
-        </select>
-      </div>
+  <button onclick="simulate()">Run Simulation</button>
+  <h3 id="result"></h3>
+</section>
 
-      <div class="field button-field">
-        <button onclick="simulate()">Run Simulation</button>
-      </div>
+<!-- IMPACT -->
+<section id="impact" class="page">
+  <h2>Two Possible Futures</h2>
 
-    </div>
-  </section>
-
-  <section class="kpi-section">
-    <div class="kpi-grid" id="kpiGrid"></div>
-  </section>
-
-  <section class="charts-section">
-    <div class="chart-card">
-      <h3>Temperature Forecast</h3>
-      <canvas id="lineChart"></canvas>
+  <div class="future-container">
+    <div class="future green">
+      <h3>🌱 Green Future</h3>
+      <ul>
+        <li>80% Renewable Energy</li>
+        <li>40% Urban Green Expansion</li>
+        <li>65% Emission Reduction</li>
+        <li>Clean Air Cities</li>
+      </ul>
     </div>
 
-    <div class="chart-card small-chart">
-      <h3>Carbon Allocation</h3>
-      <canvas id="pieChart"></canvas>
+    <div class="future polluted">
+      <h3>☠ Polluted Scenario</h3>
+      <ul>
+        <li>High Fossil Dependency</li>
+        <li>Urban Heat Crisis</li>
+        <li>35% Respiratory Increase</li>
+        <li>Ecosystem Collapse</li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-</div>
+<!-- ABOUT -->
+<section id="about" class="page">
+  <h2>System Architecture</h2>
+  <p>Multi-layer neural networks process environmental variables using real-time data from satellites, IoT sensors, public datasets, and activity tracking systems.</p>
+</section>
 
-<script src="script.js"></script>
+<footer>
+  <p>© 2026 EcoMirror AI | Sustainability Hackathon MVP</p>
+</footer>
+
 </body>
 </html>
-
 
 
 
