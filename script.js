@@ -1,4 +1,4 @@
-let pieChart, lineChart;
+let lineChart, pieChart;
 
 const countryData = {
   india: { baseAQI: 120, baseTemp: 1.1 },
@@ -16,77 +16,82 @@ function simulate() {
   const diet = document.getElementById("diet").value;
   const year = Number(document.getElementById("year").value);
 
+  const ev = document.getElementById("ev").checked;
+  const renew = document.getElementById("renew").checked;
+  const trees = document.getElementById("trees").checked;
+
   const base = countryData[country];
 
   let dietImpact = diet === "meat" ? 40 :
                    diet === "mixed" ? 15 :
                    diet === "vegetarian" ? -10 : -20;
 
-  const travelImpact = travel * 0.35;
-  const electricityImpact = electricity * 0.05;
+  let carbon = travel * 0.4 + electricity * 0.05 + dietImpact;
 
-  const carbonScore = travelImpact + electricityImpact + dietImpact;
+  if (ev) carbon -= 25;
+  if (renew) carbon -= 35;
+  if (trees) carbon -= 20;
+
+  carbon = Math.max(10, carbon);
 
   const yearsAhead = year - 2025;
 
-  const tempRise = base.baseTemp + (carbonScore / 150) * (yearsAhead / 4);
-  const aqi = Math.round(base.baseAQI + carbonScore);
-  const heatDays = Math.round(tempRise * 10);
-  const greenCover = Math.max(20, 100 - carbonScore);
-  const riskIndex = Math.min(100, Math.round((aqi / 3) + tempRise * 6));
+  const tempRise = base.baseTemp + (carbon / 140) * (yearsAhead / 4);
+  const aqi = Math.round(base.baseAQI + carbon);
+  const risk = Math.min(100, Math.round((aqi / 3) + tempRise * 6));
+  const sustainability = Math.max(0, 100 - carbon);
 
-  const metrics = [
-    ["Temperature Rise", "+" + tempRise.toFixed(2) + "°C"],
+  updateKPIs(tempRise, aqi, risk, sustainability);
+  updateCharts(carbon, tempRise);
+}
+
+function updateKPIs(temp, aqi, risk, sustain) {
+
+  const kpis = [
+    ["Temperature Rise", "+" + temp.toFixed(2) + "°C"],
     ["Projected AQI", aqi],
-    ["Extreme Heat Days", heatDays],
-    ["Green Cover", greenCover + "%"],
-    ["Climate Risk Index", riskIndex + "/100"]
+    ["Climate Risk Index", risk + "/100"],
+    ["Sustainability Score", sustain + "/100"]
   ];
 
-  const grid = document.getElementById("metricsGrid");
+  const grid = document.getElementById("kpiGrid");
   grid.innerHTML = "";
 
-  metrics.forEach(m => {
+  kpis.forEach(k => {
     grid.innerHTML += `
-      <div class="metric-card">
-        <h4>${m[0]}</h4>
-        <p>${m[1]}</p>
+      <div class="kpi-card">
+        <h4>${k[0]}</h4>
+        <p>${k[1]}</p>
       </div>
     `;
   });
-
-  updatePieChart(travelImpact, electricityImpact, dietImpact);
-  updateLineChart(tempRise);
 }
 
-function updatePieChart(travel, electricity, diet) {
-  if (pieChart) pieChart.destroy();
+function updateCharts(carbon, tempRise) {
 
-  pieChart = new Chart(document.getElementById("pieChart"), {
-    type: 'pie',
-    data: {
-      labels: ['Transport', 'Electricity', 'Diet'],
-      datasets: [{
-        data: [travel, electricity, Math.abs(diet)],
-        backgroundColor: ['#ef4444', '#f59e0b', '#10b981']
-      }]
-    }
-  });
-}
-
-function updateLineChart(tempRise) {
   if (lineChart) lineChart.destroy();
+  if (pieChart) pieChart.destroy();
 
   lineChart = new Chart(document.getElementById("lineChart"), {
     type: 'line',
     data: {
       labels: ['2025','2035','2045','2055','2070'],
       datasets: [{
-        label: "Temperature Rise (°C)",
-        data: [0.8, tempRise/2, tempRise, tempRise*1.1, tempRise*1.3],
-        borderColor: '#10b981',
-        borderWidth: 3,
+        label: 'Temperature Rise',
+        data: [0.8, tempRise/2, tempRise, tempRise*1.2, tempRise*1.4],
+        borderColor: '#00ffcc',
         tension: 0.4
+      }]
+    }
+  });
+
+  pieChart = new Chart(document.getElementById("pieChart"), {
+    type: 'doughnut',
+    data: {
+      labels: ['Carbon Load', 'Remaining Budget'],
+      datasets: [{
+        data: [carbon, 100-carbon],
+        backgroundColor: ['#ff4d4d','#00ffcc']
       }]
     }
   });
