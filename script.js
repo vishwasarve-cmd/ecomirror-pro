@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // Navigation
-  document.querySelectorAll("[data-section]").forEach(btn => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      let section = this.getAttribute("data-section");
-      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-      document.getElementById(section).classList.add("active");
+  const buttons = document.querySelectorAll(".nav-btn");
+  const pages = document.querySelectorAll(".page");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", function () {
+      const target = this.getAttribute("data-target");
+
+      pages.forEach(p => p.classList.remove("active"));
+      document.getElementById(target).classList.add("active");
     });
   });
 
-  // Theme Toggle
-  document.getElementById("themeToggle").addEventListener("click", function(){
-    document.body.classList.toggle("light");
-  });
-
-  // Chart Initialization
-  const ctx = document.getElementById("climateChart");
+  // Chart
+  const ctx = document.getElementById("chartCanvas");
   if (ctx) {
     new Chart(ctx, {
       type: "line",
@@ -24,53 +22,50 @@ document.addEventListener("DOMContentLoaded", function () {
         labels: ["2025", "2030", "2040", "2050"],
         datasets: [{
           label: "Carbon Emissions (Gt)",
-          data: [35, 42, 55, 70],
+          data: [35, 45, 60, 75],
           borderColor: "#00ffae",
-          backgroundColor: "rgba(0,255,174,0.1)",
-          fill: true,
-          tension: 0.4
+          backgroundColor: "rgba(0,255,174,0.2)",
+          fill: true
         }]
       },
       options: {
-        responsive: true,
-        plugins: { legend: { labels: { color: "white" } } },
-        scales: {
-          x: { ticks: { color: "white" } },
-          y: { ticks: { color: "white" } }
-        }
+        responsive: true
       }
     });
   }
 
-  // Simulator Sliders
+  // Sliders
   const renewable = document.getElementById("renewable");
-  const greenspace = document.getElementById("greenspace");
+  const green = document.getElementById("green");
 
-  renewable.oninput = () => {
-    document.getElementById("renewableVal").innerText = renewable.value + "%";
-  };
+  renewable.addEventListener("input", function () {
+    document.getElementById("renewableValue").innerText = this.value + "%";
+  });
 
-  greenspace.oninput = () => {
-    document.getElementById("greenVal").innerText = greenspace.value + "%";
-  };
+  green.addEventListener("input", function () {
+    document.getElementById("greenValue").innerText = this.value + "%";
+  });
 
-  document.getElementById("simulateBtn").addEventListener("click", function(){
-    let result = renewable.value * 0.6 + greenspace.value * 0.4;
-    document.getElementById("simulationResult").innerText =
-      "Projected Carbon Reduction: " + result.toFixed(2) + "% by 2040 🌍";
+  // Simulation
+  document.getElementById("simulateBtn").addEventListener("click", function () {
+    let result = renewable.value * 0.6 + green.value * 0.4;
+    document.getElementById("simResult").innerText =
+      "Projected Carbon Reduction: " + result.toFixed(2) + "%";
   });
 
   // Carbon Calculator
-  document.getElementById("calcCarbon").addEventListener("click", function(){
+  document.getElementById("calcBtn").addEventListener("click", function () {
     let electricity = parseFloat(document.getElementById("electricity").value) || 0;
     let fuel = parseFloat(document.getElementById("fuel").value) || 0;
 
-    let total = (electricity * 0.85) + (fuel * 2.3);
-    document.getElementById("carbonOutput").innerText =
-      "Estimated Monthly CO₂ Emission: " + total.toFixed(2) + " kg";
+    let total = electricity * 0.85 + fuel * 2.3;
+
+    document.getElementById("carbonResult").innerText =
+      "Estimated CO₂: " + total.toFixed(2) + " kg/month";
   });
 
 });
+
 
 
 
