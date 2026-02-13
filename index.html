@@ -6,12 +6,12 @@
 <title>EcoMirror AI</title>
 
 <link rel="stylesheet" href="styles.css">
-
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
+
 <body>
+
+<div class="bg-animation"></div>
 
 <header>
   <h2>🌍 EcoMirror AI</h2>
@@ -19,63 +19,49 @@
     <button class="nav-btn" data-target="home">Home</button>
     <button class="nav-btn" data-target="dashboard">Dashboard</button>
     <button class="nav-btn" data-target="simulator">Simulator</button>
-    <button class="nav-btn" data-target="calculator">Carbon Calc</button>
   </nav>
 </header>
 
-<!-- HOME -->
 <section id="home" class="page active">
-  <h1>AI That Shows Your Future Earth</h1>
-  <p>See how today’s actions shape tomorrow’s climate.</p>
+  <div class="glass">
+    <h1 class="fade-in">AI That Shows Your Future Earth</h1>
+    <p class="fade-in delay">Visualising tomorrow’s environmental reality.</p>
+  </div>
 </section>
 
-<!-- DASHBOARD -->
 <section id="dashboard" class="page">
-  <h2>Climate Dashboard</h2>
-  <canvas id="chartCanvas"></canvas>
+  <div class="glass">
+    <h2>Live Climate Dashboard</h2>
+    <canvas id="chartCanvas"></canvas>
+  </div>
 </section>
 
-<!-- SIMULATOR -->
 <section id="simulator" class="page">
-  <h2>Policy Simulator</h2>
+  <div class="glass">
+    <h2>Policy Simulator</h2>
 
-  <label>Renewable Energy %</label>
-  <input type="range" id="renewable" min="0" max="100" value="40">
-  <span id="renewableValue">40%</span>
+    <label>Renewable Energy %</label>
+    <input type="range" id="renewable" min="0" max="100" value="40">
+    <span id="renewableValue">40%</span>
 
-  <br><br>
+    <br><br>
 
-  <label>Green Space %</label>
-  <input type="range" id="green" min="0" max="100" value="20">
-  <span id="greenValue">20%</span>
+    <label>Green Space %</label>
+    <input type="range" id="green" min="0" max="100" value="20">
+    <span id="greenValue">20%</span>
 
-  <br><br>
+    <br><br>
 
-  <button id="simulateBtn">Run Simulation</button>
+    <button id="simulateBtn">Run Simulation</button>
 
-  <h3 id="simResult"></h3>
+    <h3 id="simResult"></h3>
+  </div>
 </section>
-
-<!-- CARBON CALCULATOR -->
-<section id="calculator" class="page">
-  <h2>Carbon Calculator</h2>
-
-  <input type="number" id="electricity" placeholder="Electricity (kWh)">
-  <input type="number" id="fuel" placeholder="Fuel (Litres)">
-  <br><br>
-  <button id="calcBtn">Calculate</button>
-
-  <h3 id="carbonResult"></h3>
-</section>
-
-<footer>
-  <p>EcoMirror AI - Hackathon MVP</p>
-</footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
+
 
 
 
