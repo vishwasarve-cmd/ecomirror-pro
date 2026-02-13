@@ -103,4 +103,19 @@ canvas {
   width: 300px !important;
   height: 250px !important;
 }
+.charts {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+canvas {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  width: 350px !important;
+  height: 280px !important;
+}
 
