@@ -1,71 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>EcoMirror - Climate Intelligence</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>EcoMirror - Future Earth Simulator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>EcoMirror</h1>
-    <p>Climate Decision Intelligence Platform</p>
-</header>
+  <h1>🌍 EcoMirror – Future Earth Simulator</h1>
 
-<section class="controls">
+  <div class="container">
 
+    <!-- INPUT SECTION -->
     <div class="card">
-        <h2>Select City</h2>
-        <select id="city">
-            <option value="3.8">Chennai</option>
-            <option value="3.5">Mumbai</option>
-            <option value="4.2">Delhi</option>
-            <option value="3.0">Bangalore</option>
-        </select>
+      <h2>Your Lifestyle</h2>
+
+      <label>🚗 Daily Travel (km)</label>
+      <input type="range" min="0" max="100" value="20" id="travel">
+
+      <label>⚡ Monthly Electricity (kWh)</label>
+      <input type="range" min="0" max="1000" value="300" id="electricity">
+
+      <label>🥩 Diet</label>
+      <select id="diet">
+        <option value="meat">Meat Based</option>
+        <option value="mixed">Mixed</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+      </select>
+
+      <label>📅 Timeline</label>
+      <select id="timeline">
+        <option value="2030">2030</option>
+        <option value="2040">2040</option>
+        <option value="2050">2050</option>
+      </select>
+
+      <button onclick="generateFuture()">Generate My Future</button>
     </div>
 
-    <div class="card">
-        <h2>Policy Interventions</h2>
-        <label><input type="checkbox" id="solar"> Solar Expansion</label>
-        <label><input type="checkbox" id="metro"> Metro Expansion</label>
-        <label><input type="checkbox" id="trees"> Urban Forest Program</label>
-        <label><input type="checkbox" id="tax"> Carbon Tax</label>
-        <button onclick="updateSimulation()">Run Simulation</button>
+    <!-- RESULT SECTION -->
+    <div class="card" id="resultCard">
+      <h2>Your Future Will Appear Here</h2>
+      <div id="futureData"></div>
     </div>
 
-</section>
+  </div>
 
-<section class="dashboard">
-
-    <div class="metric">
-        <h3>Climate Stability Score</h3>
-        <div class="scoreCircle" id="scoreCircle">
-            <span id="scoreValue">--</span>
-        </div>
-    </div>
-
-    <div class="metric">
-        <h3>Projected Temperature Rise (2050)</h3>
-        <p id="temp">-- °C</p>
-    </div>
-
-</section>
-
-<section class="chartSection">
-    <canvas id="climateChart"></canvas>
-</section>
-
-<footer>
-    EcoMirror | Hackathon Climate Intelligence Engine
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
