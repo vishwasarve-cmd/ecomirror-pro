@@ -2,20 +2,18 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>EcoMirror – Climate Intelligence Dashboard</title>
+  <title>EcoMirror – Climate Intelligence</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<header>
-  <h1>🌍 EcoMirror</h1>
-  <p>AI-Based Climate Future Projection Platform</p>
-</header>
+<div class="dashboard">
 
-<section class="input-section">
-  <div class="input-card">
-    <h2>Simulation Inputs</h2>
+  <!-- LEFT PANEL -->
+  <div class="sidebar">
+    <h2>EcoMirror</h2>
+    <p>AI Climate Simulation</p>
 
     <label>Country</label>
     <select id="country">
@@ -29,10 +27,10 @@
     <label>Daily Travel (km)</label>
     <input type="number" id="travel" value="20">
 
-    <label>Monthly Electricity (kWh)</label>
+    <label>Electricity (kWh)</label>
     <input type="number" id="electricity" value="300">
 
-    <label>Diet Type</label>
+    <label>Diet</label>
     <select id="diet">
       <option value="meat">Meat</option>
       <option value="mixed">Mixed</option>
@@ -48,28 +46,34 @@
     </select>
 
     <button onclick="simulate()">Run Simulation</button>
-  </div>
-</section>
 
-<section class="results-section">
-  <div class="metrics-grid" id="metricsGrid"></div>
-</section>
+    <hr>
 
-<section class="charts-section">
-  <div class="chart-box">
-    <h3>Carbon Distribution</h3>
-    <canvas id="pieChart"></canvas>
+    <h3>🌱 Sustainable Mode</h3>
+    <label><input type="checkbox" id="ev"> EV Adoption</label>
+    <label><input type="checkbox" id="renew"> 60% Renewable</label>
+    <label><input type="checkbox" id="trees"> Mass Tree Plantation</label>
+
   </div>
 
-  <div class="chart-box">
-    <h3>Temperature Forecast</h3>
-    <canvas id="lineChart"></canvas>
+  <!-- RIGHT PANEL -->
+  <div class="main">
+
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="charts">
+      <canvas id="lineChart"></canvas>
+      <canvas id="pieChart"></canvas>
+    </div>
+
   </div>
-</section>
+
+</div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
