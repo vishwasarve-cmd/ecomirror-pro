@@ -1,36 +1,47 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #0f172a;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
+}
+
+header {
+  text-align: center;
   padding: 30px;
 }
 
-h1 {
-  text-align: center;
+header h1 {
   color: #10b981;
+  font-size: 40px;
+  margin: 0;
+}
+
+header p {
+  opacity: 0.7;
+}
+
+.input-section {
+  display: flex;
+  justify-content: center;
   margin-bottom: 40px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
-.card {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
+.input-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 15px;
   width: 350px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-label {
-  display: block;
+.input-card label {
   margin-top: 12px;
+  display: block;
   font-size: 14px;
 }
 
-input, select {
+.input-card input,
+.input-card select {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -54,46 +65,55 @@ button:hover {
   background: #059669;
 }
 
-.results-grid {
-  margin-top: 40px;
+.results-section {
+  padding: 0 40px;
+}
+
+.metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
 
 .metric-card {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
   text-align: center;
+  transition: transform 0.3s ease;
 }
 
-.metric-card h3 {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #10b981;
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-card h4 {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 .metric-card p {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 22px;
+  margin-top: 10px;
+  color: #10b981;
 }
 
-.charts {
-  margin-top: 50px;
+.charts-section {
   display: flex;
-  gap: 40px;
   justify-content: center;
+  gap: 40px;
+  padding: 40px;
   flex-wrap: wrap;
 }
 
-.chart-card {
-  background: #1e293b;
+.chart-box {
+  width: 450px;
+  background: rgba(255,255,255,0.05);
   padding: 20px;
   border-radius: 12px;
-  width: 450px;
 }
+
 
 
 
