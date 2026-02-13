@@ -1,102 +1,77 @@
-/* PAGE BACKGROUND */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #f1f8ff);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #f8fafc);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-/* MAIN CONTAINER */
 .container {
   width: 90%;
-  max-width: 850px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
+  max-width: 1000px;
+  background: white;
   padding: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-.container:hover {
-  transform: translateY(-5px);
-}
-
-/* HEADINGS */
-h1 {
+h1, h2 {
   text-align: center;
-  color: #1e293b;
-  margin-bottom: 25px;
 }
 
-/* FORM STYLING */
 label {
-  font-weight: 500;
-  color: #334155;
+  font-weight: bold;
 }
 
 select {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   margin: 10px 0 20px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  font-size: 15px;
-  transition: 0.3s;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-select:focus {
-  border: 1px solid #3b82f6;
-  box-shadow: 0 0 8px rgba(59,130,246,0.4);
-  outline: none;
-}
-
-/* BUTTON */
 button {
   width: 100%;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: none;
   background: linear-gradient(90deg, #22c55e, #3b82f6);
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
+  margin-top: 10px;
 }
 
 button:hover {
   opacity: 0.9;
-  transform: scale(1.03);
 }
 
-/* RESULT CARDS */
+.hidden {
+  display: none;
+}
+
+/* CARDS */
 .metrics {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
 }
 
-.metrics div {
-  flex: 1;
-  min-width: 120px;
-  padding: 15px;
+.card {
+  padding: 20px;
   border-radius: 15px;
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   text-align: center;
-  font-weight: bold;
-  background: linear-gradient(135deg, #dbeafe, #e0f2fe);
-  color: #1e293b;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-  transition: 0.3s;
 }
 
-.metrics div:hover {
-  transform: scale(1.05);
+.card p {
+  font-size: 22px;
+  font-weight: bold;
 }
 
 /* CHARTS */
@@ -114,17 +89,6 @@ canvas {
   padding: 15px;
   width: 350px !important;
   height: 280px !important;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-
-canvas:hover {
-  transform: scale(1.03);
-}
-
-/* HIDDEN */
-.hidden {
-  display: none;
 }
 
 
