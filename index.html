@@ -1,53 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>EcoMirror - Future Earth Simulator</title>
+  <title>EcoMirror – Climate Future Simulator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>🌍 EcoMirror – Future Earth Simulator</h1>
+<h1>🌍 EcoMirror – Climate Future Simulator</h1>
 
-  <div class="container">
+<div class="container">
 
-    <!-- INPUT SECTION -->
-    <div class="card">
-      <h2>Your Lifestyle</h2>
+  <!-- INPUT SECTION -->
+  <div class="card">
+    <h2>Enter Your Lifestyle</h2>
 
-      <label>🚗 Daily Travel (km)</label>
-      <input type="range" min="0" max="100" value="20" id="travel">
+    <label>🚗 Daily Travel (km)</label>
+    <input type="range" min="0" max="100" value="20" id="travel">
 
-      <label>⚡ Monthly Electricity (kWh)</label>
-      <input type="range" min="0" max="1000" value="300" id="electricity">
+    <label>⚡ Monthly Electricity (kWh)</label>
+    <input type="range" min="0" max="1000" value="300" id="electricity">
 
-      <label>🥩 Diet</label>
-      <select id="diet">
-        <option value="meat">Meat Based</option>
-        <option value="mixed">Mixed</option>
-        <option value="vegetarian">Vegetarian</option>
-        <option value="vegan">Vegan</option>
-      </select>
+    <label>🥩 Diet</label>
+    <select id="diet">
+      <option value="meat">Meat</option>
+      <option value="mixed">Mixed</option>
+      <option value="vegetarian">Vegetarian</option>
+      <option value="vegan">Vegan</option>
+    </select>
 
-      <label>📅 Timeline</label>
-      <select id="timeline">
-        <option value="2030">2030</option>
-        <option value="2040">2040</option>
-        <option value="2050">2050</option>
-      </select>
+    <label>📅 Select Future Year</label>
+    <select id="year">
+      <option value="2030">2030</option>
+      <option value="2045">2045</option>
+      <option value="2070">2070</option>
+    </select>
 
-      <button onclick="generateFuture()">Generate My Future</button>
-    </div>
+    <button onclick="simulate()">Simulate Future</button>
+  </div>
 
-    <!-- RESULT SECTION -->
-    <div class="card" id="resultCard">
-      <h2>Your Future Will Appear Here</h2>
-      <div id="futureData"></div>
-    </div>
+  <!-- POLICY TOGGLES -->
+  <div class="card">
+    <h2>🌱 What If Policies</h2>
+
+    <label><input type="checkbox" id="ev"> Switch to EV</label>
+    <label><input type="checkbox" id="trees"> Plant 1M Trees</label>
+    <label><input type="checkbox" id="renewable"> 60% Renewable Energy</label>
+    <label><input type="checkbox" id="emissionLaw"> Strict Emission Law</label>
 
   </div>
 
-  <script src="script.js"></script>
+  <!-- RESULT SECTION -->
+  <div class="card" id="result">
+    <h2>Future Results</h2>
+    <div id="output"></div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
 
