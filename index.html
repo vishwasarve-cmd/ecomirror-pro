@@ -1,139 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>EcoMirror Climate Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>EcoMirror - Future Earth Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+  <header>
+    <h1>🌍 EcoMirror</h1>
+    <p>See Your Country's Climate Future (2045 Projection)</p>
+  </header>
 
-  <h1>🌍 EcoMirror Climate Predictor</h1>
-
-  <!-- FORM SECTION -->
-  <div id="form-section">
-
-    <label>Select Country</label>
-    <select id="country">
-      <option>India</option>
-      <option>United States</option>
-      <option>China</option>
-      <option>Germany</option>
-      <option>Brazil</option>
-      <option>Australia</option>
-      <option>Japan</option>
-      <option>Canada</option>
-      <option>France</option>
-      <option>South Africa</option>
-    </select>
-
-    <label>Transport Emissions</label>
-    <select id="transport">
-      <option>High</option>
-      <option>Low</option>
-    </select>
-
-    <label>Industrial Pollution</label>
-    <select id="industry">
-      <option>High</option>
-      <option>Low</option>
-    </select>
-
-    <label>Renewable Energy Usage</label>
-    <select id="renewable">
-      <option>High</option>
-      <option>Low</option>
-    </select>
-
+  <section class="controls">
+    <select id="countrySelect"></select>
     <button onclick="predict()">Predict Future</button>
+  </section>
 
-  </div>
+  <section id="resultSection" class="result-section">
 
-  <!-- RESULT SECTION -->
-  <div id="result-section" class="hidden">
+    <!-- Climate Wheel -->
+    <div class="climate-wheel">
 
-    <h2 id="future-title"></h2>
-  <div class="climate-wheel">
-
-  <div class="wheel-segment temp-seg">
-    <span>🌡 Temp</span>
-    <strong id="wheel-temp">0°C</strong>
-  </div>
-
-  <div class="wheel-segment aqi-seg">
-    <span>🌫 AQI</span>
-    <strong id="wheel-aqi">0</strong>
-  </div>
-
-  <div class="wheel-segment sea-seg">
-    <span>🌊 Sea</span>
-    <strong id="wheel-sea">0 cm</strong>
-  </div>
-
-  <div class="wheel-segment carbon-seg">
-    <span>🏭 Carbon</span>
-    <strong id="wheel-carbon">0</strong>
-  </div>
-
-  <div class="wheel-center">
-    🌍 2045
-  </div>
-
-</div>
-
-
-
-
-    <!-- METRIC CARDS -->
-    <div class="metrics">
-
-      <div class="card" id="temp-card">
-        <h3>🌡 Temperature Rise</h3>
-        <p id="temp">0</p>
-        <div class="progress"><div id="temp-bar"></div></div>
+      <div class="wheel-segment temp-seg">
+        <span>🌡 Temperature</span>
+        <strong id="wheel-temp">--</strong>
       </div>
 
-      <div class="card" id="aqi-card">
-        <h3>🌫 Air Quality Index</h3>
-        <p id="aqi">0</p>
-        <div class="progress"><div id="aqi-bar"></div></div>
+      <div class="wheel-segment aqi-seg">
+        <span>🌫 AQI</span>
+        <strong id="wheel-aqi">--</strong>
       </div>
 
-      <div class="card" id="sea-card">
-        <h3>🌊 Sea Level Rise</h3>
-        <p id="sea">0</p>
-        <div class="progress"><div id="sea-bar"></div></div>
+      <div class="wheel-segment sea-seg">
+        <span>🌊 Sea Level</span>
+        <strong id="wheel-sea">--</strong>
       </div>
 
-      <div class="card" id="carbon-card">
-        <h3>🏭 Carbon Score</h3>
-        <p id="carbon">0</p>
-        <div class="progress"><div id="carbon-bar"></div></div>
+      <div class="wheel-segment carbon-seg">
+        <span>🏭 Carbon</span>
+        <strong id="wheel-carbon">--</strong>
       </div>
 
-      <div class="card" id="health-card">
-        <h3>❤️ Health Risk</h3>
-        <p id="health">0</p>
+      <div class="wheel-center">
+        2045
       </div>
-
     </div>
 
-    <!-- CHARTS -->
+    <!-- Info Cards -->
+    <div class="metrics">
+      <div class="card temp-card">
+        <h3>Temperature Rise</h3>
+        <p id="tempValue">--</p>
+      </div>
+
+      <div class="card aqi-card">
+        <h3>Air Quality</h3>
+        <p id="aqiValue">--</p>
+      </div>
+
+      <div class="card sea-card">
+        <h3>Sea Level Rise</h3>
+        <p id="seaValue">--</p>
+      </div>
+
+      <div class="card carbon-card">
+        <h3>Carbon Impact</h3>
+        <p id="carbonValue">--</p>
+      </div>
+    </div>
+
+    <!-- Charts -->
     <div class="charts">
       <canvas id="pieChart"></canvas>
       <canvas id="lineChart"></canvas>
     </div>
 
-    <button onclick="reset()">Back</button>
+  </section>
 
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
