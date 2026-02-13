@@ -1,48 +1,63 @@
-function generateFuture() {
-  let travel = parseInt(document.getElementById("travel").value);
-  let electricity = parseInt(document.getElementById("electricity").value);
+function simulate() {
+
+  let travel = Number(document.getElementById("travel").value);
+  let electricity = Number(document.getElementById("electricity").value);
   let diet = document.getElementById("diet").value;
-  let timeline = parseInt(document.getElementById("timeline").value);
+  let year = Number(document.getElementById("year").value);
 
-  let score = travel * 0.3 + electricity * 0.05;
+  let ev = document.getElementById("ev").checked;
+  let trees = document.getElementById("trees").checked;
+  let renewable = document.getElementById("renewable").checked;
+  let emissionLaw = document.getElementById("emissionLaw").checked;
 
-  if (diet === "meat") score += 50;
-  if (diet === "vegetarian") score -= 20;
-  if (diet === "vegan") score -= 40;
+  // Base Carbon Score
+  let carbon = travel * 0.4 + electricity * 0.06;
 
-  let yearsAhead = timeline - 2025;
+  if (diet === "meat") carbon += 50;
+  if (diet === "vegetarian") carbon -= 20;
+  if (diet === "vegan") carbon -= 40;
 
-  let temperatureRise = (score / 100) * (yearsAhead / 5);
-  let aqi = 50 + score;
-  let greenery = Math.max(10, 100 - score);
+  // Policy Reductions
+  if (ev) carbon -= 30;
+  if (trees) carbon -= 25;
+  if (renewable) carbon -= 40;
+  if (emissionLaw) carbon -= 35;
 
-  let resultCard = document.getElementById("resultCard");
-  let futureData = document.getElementById("futureData");
+  carbon = Math.max(10, carbon);
 
-  if (score < 120) {
-    document.body.className = "green-bg";
-    resultCard.style.background = "#064e3b";
+  let yearsAhead = year - 2025;
 
-    futureData.innerHTML = `
-      <h3>🌱 Green Future (${timeline})</h3>
-      <p>🌡 Temperature Rise: +${temperatureRise.toFixed(1)}°C</p>
-      <p>🌫 AQI: ${aqi}</p>
-      <p>🌳 Green Cover: ${greenery}%</p>
-      <p><strong>AI Insight:</strong> Your sustainable choices are helping stabilise climate conditions.</p>
-    `;
+  let tempRise = (carbon / 100) * (yearsAhead / 4);
+  let aqi = Math.round(60 + carbon);
+  let heatDays = Math.round((carbon / 2));
+  let greenCover = Math.max(10, Math.round(100 - carbon));
+
+  let riskIndex = Math.min(100, Math.round((aqi / 4) + tempRise * 10));
+
+  let asthmaRisk = Math.min(100, Math.round(aqi / 3));
+  let heatStrokeRisk = Math.min(100, Math.round(tempRise * 20));
+
+  let output = document.getElementById("output");
+
+  if (riskIndex < 50) {
+    document.body.className = "green";
   } else {
-    document.body.className = "polluted-bg";
-    resultCard.style.background = "#7f1d1d";
-
-    futureData.innerHTML = `
-      <h3>🌫 Polluted Scenario (${timeline})</h3>
-      <p>🌡 Temperature Rise: +${temperatureRise.toFixed(1)}°C</p>
-      <p>🌫 AQI: ${aqi}</p>
-      <p>🌳 Green Cover: ${greenery}%</p>
-      <p><strong>AI Insight:</strong> Without intervention, extreme heat waves and pollution may intensify.</p>
-    `;
+    document.body.className = "red";
   }
+
+  output.innerHTML = `
+    <h3>📊 Year ${year} Projection</h3>
+    <p>🌡 Temperature Rise: +${tempRise.toFixed(1)}°C</p>
+    <p>🌫 AQI: ${aqi}</p>
+    <p>🔥 Extreme Heat Days: ${heatDays}</p>
+    <p>🌳 Green Cover: ${greenCover}%</p>
+    <hr>
+    <h3>⚠ Climate Risk Index: ${riskIndex}/100</h3>
+    <p>🫁 Asthma Risk: ${asthmaRisk}%</p>
+    <p>🌡 Heat Stroke Risk: ${heatStrokeRisk}%</p>
+  `;
 }
+
 
 
 
