@@ -1,82 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>EcoMirror Global 🌍</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>EcoMirror - Country Climate Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="container">
 
-  <h1>EcoMirror 🌍</h1>
-  <p class="tagline">Global Climate Simulator – 2045</p>
+  <h1>🌍 EcoMirror Climate Predictor</h1>
 
-  <div class="card" id="form-section">
+  <!-- FORM SECTION -->
+  <div id="form-section">
 
+    <label>Select Country</label>
     <select id="country">
-      <!-- Large stable country list -->
       <option>India</option>
       <option>United States</option>
       <option>China</option>
-      <option>Brazil</option>
       <option>Germany</option>
-      <option>United Kingdom</option>
-      <option>France</option>
+      <option>Brazil</option>
+      <option>Australia</option>
       <option>Japan</option>
       <option>Canada</option>
-      <option>Australia</option>
+      <option>France</option>
       <option>South Africa</option>
-      <option>Russia</option>
-      <option>Italy</option>
-      <option>Spain</option>
-      <option>Mexico</option>
-      <option>Indonesia</option>
-      <option>Saudi Arabia</option>
-      <option>Argentina</option>
-      <option>Norway</option>
-      <option>Sweden</option>
     </select>
 
+    <label>Transport Emissions</label>
     <select id="transport">
-      <option value="High">High Fossil Transport</option>
-      <option value="Medium">Mixed Transport</option>
-      <option value="Low">EV & Public Focus</option>
+      <option>High</option>
+      <option>Low</option>
     </select>
 
+    <label>Industrial Pollution</label>
     <select id="industry">
-      <option value="High">Heavy Industry</option>
-      <option value="Medium">Moderate Industry</option>
-      <option value="Low">Green Industry</option>
+      <option>High</option>
+      <option>Low</option>
     </select>
 
+    <label>Renewable Energy Usage</label>
     <select id="renewable">
-      <option value="Low">Low Renewable</option>
-      <option value="Medium">Growing Renewable</option>
-      <option value="High">High Renewable</option>
+      <option>High</option>
+      <option>Low</option>
     </select>
 
     <button onclick="predict()">Predict Future</button>
+
   </div>
 
+  <!-- RESULT SECTION -->
   <div id="result-section" class="hidden">
 
     <h2 id="future-title"></h2>
 
-    <div class="stats">
-      <div id="temp"></div>
-      <div id="aqi"></div>
-      <div id="sea"></div>
+    <div class="metrics">
+
+      <div class="card">
+        <h3>🌡 Temperature Rise</h3>
+        <p id="temp"></p>
+        <span id="temp-status"></span>
+      </div>
+
+      <div class="card">
+        <h3>🌫 Air Quality Index</h3>
+        <p id="aqi"></p>
+        <span id="aqi-status"></span>
+      </div>
+
+      <div class="card">
+        <h3>🌊 Sea Level Rise</h3>
+        <p id="sea"></p>
+        <span id="sea-status"></span>
+      </div>
+
+      <div class="card">
+        <h3>🏭 Carbon Score</h3>
+        <p id="carbon"></p>
+        <span id="carbon-status"></span>
+      </div>
+
+      <div class="card">
+        <h3>❤️ Health Risk</h3>
+        <p id="health"></p>
+        <span id="health-status"></span>
+      </div>
+
     </div>
 
     <div class="charts">
-    <canvas id="pieChart"></canvas>
-    <canvas id="lineChart"></canvas>
-</div>
+      <canvas id="pieChart"></canvas>
+      <canvas id="lineChart"></canvas>
+    </div>
 
-    <button onclick="reset()">Simulate Again</button>
+    <button onclick="reset()">Back</button>
+
   </div>
 
 </div>
