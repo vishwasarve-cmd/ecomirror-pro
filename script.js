@@ -1,103 +1,69 @@
-let pieChart = null;
-let lineChart = null;
+const countrySelect = document.getElementById("countrySelect");
+
+fetch("https://restcountries.com/v3.1/all")
+  .then(res => res.json())
+  .then(data => {
+    data.sort((a,b)=> a.name.common.localeCompare(b.name.common));
+    data.forEach(country => {
+      const option = document.createElement("option");
+      option.value = country.name.common;
+      option.textContent = country.name.common;
+      countrySelect.appendChild(option);
+    });
+  });
+
+let pieChart, lineChart;
 
 function predict() {
 
-  const country = document.getElementById("country").value;
-  const transport = document.getElementById("transport").value;
-  const industry = document.getElementById("industry").value;
-  const renewable = document.getElementById("renewable").value;
+  const temperature = (Math.random()*3 + 1).toFixed(1);
+  const aqi = Math.floor(Math.random()*200);
+  const sea = Math.floor(Math.random()*40);
+  const carbon = Math.floor(Math.random()*500);
 
-  let score = 50;
-  score += transport === "Low" ? 10 : -10;
-  score += industry === "Low" ? 10 : -10;
-  score += renewable === "High" ? 20 : -15;
-  score = Math.max(0, Math.min(100, score));
-
-  const temperature = ((100 - score) / 20).toFixed(1);
-  const aqi = Math.floor((100 - score) * 3.5);
-  const sea = Math.floor((100 - score) * 0.4);
-  const carbon = Math.floor((100 - score) * 1.5);
-  const healthRisk = score > 70 ? "Low" : score > 40 ? "Moderate" : "High";
-
-  document.getElementById("form-section").classList.add("hidden");
-  document.getElementById("result-section").classList.remove("hidden");
-
-  document.getElementById("future-title").innerText =
-    country + " Climate Outlook 2045";
-
-  document.getElementById("temp").innerHTML = temperature + "°C";
-  document.getElementById("aqi").innerHTML = aqi;
-  document.getElementById("sea").innerHTML = sea + " cm";
-  document.getElementById("carbon").innerHTML = carbon;
-  document.getElementById("health").innerHTML = healthRisk;
-  document.getElementById("scoreValue").innerHTML = score;
-
-  document.querySelector(".score-circle").style.background =
-    `conic-gradient(#22c55e ${score}%, #e5e7eb ${score}%)`;
-
-  document.getElementById("temp-bar").style.width = (temperature * 20) + "%";
-  document.getElementById("aqi-bar").style.width = (aqi / 3.5) + "%";
-  document.getElementById("sea-bar").style.width = (sea * 2.5) + "%";
-  document.getElementById("carbon-bar").style.width = carbon + "%";
+  // Update Wheel
   document.getElementById("wheel-temp").innerHTML = temperature + "°C";
-document.getElementById("wheel-aqi").innerHTML = aqi;
-document.getElementById("wheel-sea").innerHTML = sea + " cm";
-document.getElementById("wheel-carbon").innerHTML = carbon;
+  document.getElementById("wheel-aqi").innerHTML = aqi;
+  document.getElementById("wheel-sea").innerHTML = sea + " cm";
+  document.getElementById("wheel-carbon").innerHTML = carbon;
 
-  applyColor("temp-card", temperature > 3 ? "bad" : "good");
-  applyColor("aqi-card", aqi > 200 ? "bad" : "medium");
-  applyColor("sea-card", sea > 20 ? "bad" : "medium");
-  applyColor("carbon-card", carbon > 60 ? "bad" : "good");
-  applyColor("health-card", healthRisk === "High" ? "bad" : "good");
+  // Update Cards
+  document.getElementById("tempValue").innerHTML = temperature + "°C Rise";
+  document.getElementById("aqiValue").innerHTML = "AQI: " + aqi;
+  document.getElementById("seaValue").innerHTML = sea + " cm Increase";
+  document.getElementById("carbonValue").innerHTML = carbon + " Mt CO₂";
 
-  createCharts(aqi, temperature);
-}
+  // Destroy old charts
+  if(pieChart) pieChart.destroy();
+  if(lineChart) lineChart.destroy();
 
-function applyColor(id, status) {
-  const card = document.getElementById(id);
-  card.classList.remove("good", "medium", "bad");
-  card.classList.add(status);
-}
-
-function createCharts(aqi, temperature) {
-
-  if (pieChart) pieChart.destroy();
-  if (lineChart) lineChart.destroy();
-
-  const pollutionPercent = Math.min(100, aqi / 3.5);
-  const cleanPercent = 100 - pollutionPercent;
-
+  // PIE CHART (Green vs Red)
   pieChart = new Chart(document.getElementById("pieChart"), {
     type: "pie",
     data: {
-      labels: ["Clean Air", "Pollution"],
+      labels: ["Sustainable", "Pollution"],
       datasets: [{
-        data: [cleanPercent, pollutionPercent],
+        data: [100-aqi, aqi],
         backgroundColor: ["#16a34a", "#dc2626"]
       }]
     }
   });
 
+  // LINE CHART (Temp Trend)
   lineChart = new Chart(document.getElementById("lineChart"), {
     type: "line",
     data: {
-      labels: ["2025", "2030", "2035", "2040", "2045"],
+      labels: ["2025","2030","2035","2040","2045"],
       datasets: [{
-        label: "Projected Temperature Rise (°C)",
-        data: [1, 1.6, 2.3, 3.1, parseFloat(temperature)],
-        borderColor: "#2563eb",
-        backgroundColor: "rgba(37,99,235,0.2)",
-        fill: true,
+        label: "Temperature Rise Projection",
+        data: [1.0,1.5,2.0,2.5,temperature],
+        borderColor: "#16a34a",
+        fill: false,
         tension: 0.4
       }]
     }
   });
-}
 
-function reset() {
-  document.getElementById("result-section").classList.add("hidden");
-  document.getElementById("form-section").classList.remove("hidden");
 }
 
 
