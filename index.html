@@ -1,72 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>EcoMirror 🌍</title>
+  <title>EcoMirror Global 🌍</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>EcoMirror 🌍</h1>
-    <p class="subtitle">See Your City in 2045 Based on Today's Choices</p>
+<div class="overlay"></div>
 
-    <div id="form-section">
-      <select id="city">
-        <option>Chennai</option>
-        <option>Delhi</option>
-        <option>Mumbai</option>
-        <option>Bangalore</option>
-      </select>
+<div class="container">
 
-      <select id="transport">
-        <option value="Car">Car</option>
-        <option value="Public">Public Transport</option>
-        <option value="EV">Electric Vehicle</option>
-      </select>
+  <h1>EcoMirror 🌍</h1>
+  <p class="tagline">Simulate Your Country’s Climate Future (2045)</p>
 
-      <select id="electricity">
-        <option value="High">High Electricity Usage</option>
-        <option value="Medium">Medium Electricity Usage</option>
-        <option value="Low">Low Electricity Usage</option>
-      </select>
+  <div class="glass-card" id="form-section">
 
-      <select id="plastic">
-        <option value="High">High Plastic Usage</option>
-        <option value="Medium">Medium Plastic Usage</option>
-        <option value="Low">Low Plastic Usage</option>
-      </select>
+    <select id="country"></select>
 
-      <label>
-        <input type="checkbox" id="trees">
-        Plant Trees
-      </label>
+    <select id="transport">
+      <option value="High">High Fossil Fuel Transport</option>
+      <option value="Medium">Mixed Transport</option>
+      <option value="Low">EV & Public Focus</option>
+    </select>
 
-      <label>
-        <input type="checkbox" id="renewable">
-        Use Renewable Energy
-      </label>
+    <select id="industry">
+      <option value="High">Heavy Industrial Emissions</option>
+      <option value="Medium">Moderate Industry</option>
+      <option value="Low">Green Industry</option>
+    </select>
 
-      <button onclick="predictFuture()">Predict 2045</button>
-    </div>
+    <select id="renewable">
+      <option value="Low">Low Renewable Adoption</option>
+      <option value="Medium">Growing Renewable</option>
+      <option value="High">High Renewable Adoption</option>
+    </select>
 
-    <div id="result-section" class="hidden">
-      <h2 id="future-title"></h2>
-      <p id="score"></p>
-      <p id="temperature"></p>
-      <p id="aqi"></p>
-
-      <div class="meter">
-        <div id="health-bar"></div>
-      </div>
-
-      <button onclick="reset()">Try Again</button>
-    </div>
+    <button onclick="predict()">Predict 2045</button>
   </div>
 
-  <script src="script.js"></script>
+  <div id="result-section" class="hidden">
+
+    <h2 id="future-title"></h2>
+
+    <div class="stats-grid">
+      <div class="stat-card" id="tempCard"></div>
+      <div class="stat-card" id="aqiCard"></div>
+      <div class="stat-card" id="seaCard"></div>
+    </div>
+
+    <div class="charts">
+      <canvas id="pieChart"></canvas>
+      <canvas id="barChart"></canvas>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+    <button onclick="reset()">Simulate Again</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
+
 
 
