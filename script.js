@@ -1,74 +1,105 @@
-function predictFuture() {
+let pieChart, barChart, lineChart;
+
+// Load all countries automatically
+fetch("https://restcountries.com/v3.1/all")
+  .then(res => res.json())
+  .then(data => {
+    const countrySelect = document.getElementById("country");
+    data.sort((a,b)=>a.name.common.localeCompare(b.name.common));
+    data.forEach(country => {
+      const option = document.createElement("option");
+      option.value = country.name.common;
+      option.textContent = country.name.common;
+      countrySelect.appendChild(option);
+    });
+  });
+
+function predict() {
+
+  const country = document.getElementById("country").value;
+  const transport = document.getElementById("transport").value;
+  const industry = document.getElementById("industry").value;
+  const renewable = document.getElementById("renewable").value;
+
   let score = 0;
 
-  let city = document.getElementById("city").value;
-  let transport = document.getElementById("transport").value;
-  let electricity = document.getElementById("electricity").value;
-  let plastic = document.getElementById("plastic").value;
-  let trees = document.getElementById("trees").checked;
-  let renewable = document.getElementById("renewable").checked;
+  if (transport === "High") score -= 10;
+  if (transport === "Low") score += 10;
 
-  if (transport === "Car") score -= 10;
-  if (transport === "Public") score += 5;
-  if (transport === "EV") score += 8;
+  if (industry === "High") score -= 10;
+  if (industry === "Low") score += 10;
 
-  if (electricity === "High") score -= 10;
-  if (electricity === "Medium") score += 0;
-  if (electricity === "Low") score += 5;
+  if (renewable === "High") score += 15;
+  if (renewable === "Low") score -= 10;
 
-  if (plastic === "High") score -= 8;
-  if (plastic === "Medium") score -= 3;
-  if (plastic === "Low") score += 5;
-
-  if (trees) score += 10;
-  if (renewable) score += 8;
-
-  let scenario = "Moderate";
-  let temperature = 2;
-  let aqi = 180;
-  let healthPercent = 50;
-
-  if (score > 15) {
-    scenario = "Green Future 🌿";
-    temperature = -1.5;
-    aqi = 60;
-    healthPercent = 85;
-    document.body.style.background = "linear-gradient(to right, #065f46, #10b981)";
-  } else if (score < 0) {
-    scenario = "Polluted Future 🔥";
-    temperature = 3;
-    aqi = 300;
-    healthPercent = 20;
-    document.body.style.background = "linear-gradient(to right, #7f1d1d, #dc2626)";
-  } else {
-    scenario = "Moderate Future ⚠";
-    document.body.style.background = "linear-gradient(to right, #78350f, #f59e0b)";
-  }
+  let temperature = score > 10 ? -1 : score < 0 ? 4 : 2;
+  let aqi = score > 10 ? 60 : score < 0 ? 320 : 180;
+  let sea = score > 10 ? 4 : score < 0 ? 28 : 12;
 
   document.getElementById("form-section").classList.add("hidden");
   document.getElementById("result-section").classList.remove("hidden");
 
   document.getElementById("future-title").innerText =
-    city + " in 2045 — " + scenario;
+    country + " Climate Outlook 2045";
 
-  document.getElementById("score").innerText = "Climate Score: " + score;
-  document.getElementById("temperature").innerText =
-    "Temperature Change: " + temperature + "°C";
-  document.getElementById("aqi").innerText =
-    "AQI Level: " + aqi;
+  document.getElementById("tempCard").innerHTML =
+    "🌡 Temperature Change<br><strong>" + temperature + "°C</strong>";
 
-  let healthBar = document.getElementById("health-bar");
-  healthBar.style.width = healthPercent + "%";
+  document.getElementById("aqiCard").innerHTML =
+    "🌫 AQI Index<br><strong>" + aqi + "</strong>";
 
-  if (healthPercent > 70) healthBar.style.background = "#22c55e";
-  else if (healthPercent > 40) healthBar.style.background = "#f59e0b";
-  else healthBar.style.background = "#dc2626";
+  document.getElementById("seaCard").innerHTML =
+    "🌊 Sea Level Rise<br><strong>" + sea + " cm</strong>";
+
+  createCharts(aqi, renewable, temperature);
 }
 
-function reset() {
+function createCharts(aqi, renewable, temperature) {
+
+  if (pieChart) pieChart.destroy();
+  if (barChart) barChart.destroy();
+  if (lineChart) lineChart.destroy();
+
+  pieChart = new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+      labels: ["Clean Air", "Polluted Air"],
+      datasets: [{
+        data: [100 - (aqi/4), aqi/4],
+        backgroundColor: ["#22c55e","#dc2626"]
+      }]
+    }
+  });
+
+  barChart = new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+      labels: ["Transport","Industry","Energy"],
+      datasets: [{
+        label: "Emission Impact",
+        data: [30,40, renewable==="High"?20:60],
+        backgroundColor: ["#3b82f6","#f97316","#10b981"]
+      }]
+    }
+  });
+
+  lineChart = new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+      labels: ["2025","2030","2035","2040","2045"],
+      datasets: [{
+        label: "Temperature Trend",
+        data: [1,1.5,2,2.5,temperature],
+        borderColor: "#ef4444",
+        fill: false
+      }]
+    }
+  });
+}
+
+function reset(){
   document.getElementById("result-section").classList.add("hidden");
   document.getElementById("form-section").classList.remove("hidden");
-  document.body.style.background = "linear-gradient(to right, #0f172a, #1e293b)";
 }
 
 
