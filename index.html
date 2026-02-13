@@ -55,47 +55,45 @@
 
     <h2 id="future-title"></h2>
 
-    <div class="metrics">
+<div class="score-circle">
+  <h2>Climate Score</h2>
+  <div id="scoreValue">0</div>
+</div>
 
-      <div class="card">
-        <h3>🌡 Temperature Rise</h3>
-        <p id="temp"></p>
-        <span id="temp-status"></span>
-      </div>
+<div class="metrics">
 
-      <div class="card">
-        <h3>🌫 Air Quality Index</h3>
-        <p id="aqi"></p>
-        <span id="aqi-status"></span>
-      </div>
+  <div class="card" id="temp-card">
+    <h3>🌡 Temperature Rise</h3>
+    <p id="temp">0</p>
+    <div class="progress"><div id="temp-bar"></div></div>
+    <span id="temp-status"></span>
+  </div>
 
-      <div class="card">
-        <h3>🌊 Sea Level Rise</h3>
-        <p id="sea"></p>
-        <span id="sea-status"></span>
-      </div>
+  <div class="card" id="aqi-card">
+    <h3>🌫 Air Quality Index</h3>
+    <p id="aqi">0</p>
+    <div class="progress"><div id="aqi-bar"></div></div>
+    <span id="aqi-status"></span>
+  </div>
 
-      <div class="card">
-        <h3>🏭 Carbon Score</h3>
-        <p id="carbon"></p>
-        <span id="carbon-status"></span>
-      </div>
+  <div class="card" id="sea-card">
+    <h3>🌊 Sea Level Rise</h3>
+    <p id="sea">0</p>
+    <div class="progress"><div id="sea-bar"></div></div>
+    <span id="sea-status"></span>
+  </div>
 
-      <div class="card">
-        <h3>❤️ Health Risk</h3>
-        <p id="health"></p>
-        <span id="health-status"></span>
-      </div>
+  <div class="card" id="carbon-card">
+    <h3>🏭 Carbon Score</h3>
+    <p id="carbon">0</p>
+    <div class="progress"><div id="carbon-bar"></div></div>
+    <span id="carbon-status"></span>
+  </div>
 
-    </div>
-
-    <div class="charts">
-      <canvas id="pieChart"></canvas>
-      <canvas id="lineChart"></canvas>
-    </div>
-
-    <button onclick="reset()">Back</button>
-
+  <div class="card" id="health-card">
+    <h3>❤️ Health Risk</h3>
+    <p id="health">0</p>
+    <span id="health-status"></span>
   </div>
 
 </div>
