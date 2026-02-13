@@ -1,4 +1,4 @@
-let pieChart, barChart, lineChart;
+let pieChart, lineChart;
 
 function predict() {
 
@@ -37,48 +37,50 @@ function predict() {
   document.getElementById("sea").innerHTML =
     "🌊 Sea Rise: <strong>" + sea + " cm</strong>";
 
-  createCharts(aqi, renewable, temperature);
+  createCharts(aqi, temperature);
 }
 
-function createCharts(aqi, renewable, temperature) {
+function createCharts(aqi, temperature) {
 
   if (pieChart) pieChart.destroy();
-  if (barChart) barChart.destroy();
   if (lineChart) lineChart.destroy();
 
+  // PIE CHART - Air Quality
   pieChart = new Chart(document.getElementById("pieChart"), {
     type: "pie",
     data: {
       labels: ["Clean Air", "Pollution"],
       datasets: [{
         data: [100 - (aqi/4), aqi/4],
-        backgroundColor: ["#22c55e","#dc2626"]
+        backgroundColor: ["#22c55e", "#dc2626"]
       }]
+    },
+    options: {
+      responsive: true
     }
   });
 
-  barChart = new Chart(document.getElementById("barChart"), {
-    type: "bar",
-    data: {
-      labels: ["Transport","Industry","Energy"],
-      datasets: [{
-        label: "Emission Level",
-        data: [30,40, renewable==="High"?20:60],
-        backgroundColor: ["#3b82f6","#f97316","#10b981"]
-      }]
-    }
-  });
-
+  // LINE CHART - Temperature Trend
   lineChart = new Chart(document.getElementById("lineChart"), {
     type: "line",
     data: {
-      labels: ["2025","2030","2035","2040","2045"],
+      labels: ["2025", "2030", "2035", "2040", "2045"],
       datasets: [{
-        label: "Temperature Trend",
-        data: [1,1.5,2,2.5,temperature],
+        label: "Temperature Trend (°C)",
+        data: [1, 1.5, 2, 2.5, temperature],
         borderColor: "#ef4444",
-        fill: false
+        backgroundColor: "rgba(239,68,68,0.2)",
+        tension: 0.3,
+        fill: true
       }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
     }
   });
 }
