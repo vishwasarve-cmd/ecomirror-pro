@@ -1,38 +1,81 @@
-<div class="card">
-  <h2>Enter Simulation Data</h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EcoMirror – Climate Intelligence Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
 
-  <label>🌍 Select Country</label>
-  <select id="country">
-    <option value="india">India</option>
-    <option value="germany">Germany</option>
-    <option value="usa">USA</option>
-    <option value="singapore">Singapore</option>
-    <option value="brazil">Brazil</option>
-  </select>
+<h1>🌍 EcoMirror – Climate Future Intelligence</h1>
 
-  <label>🚗 Daily Travel (km)</label>
-  <input type="number" id="travel" value="20">
+<div class="container">
 
-  <label>⚡ Monthly Electricity (kWh)</label>
-  <input type="number" id="electricity" value="300">
+  <!-- INPUT CARD -->
+  <div class="card">
+    <h2>Simulation Inputs</h2>
 
-  <label>🥩 Diet Type</label>
-  <select id="diet">
-    <option value="meat">Meat</option>
-    <option value="mixed">Mixed</option>
-    <option value="vegetarian">Vegetarian</option>
-    <option value="vegan">Vegan</option>
-  </select>
+    <label>🌍 Country</label>
+    <select id="country">
+      <option value="india">India</option>
+      <option value="germany">Germany</option>
+      <option value="usa">USA</option>
+      <option value="singapore">Singapore</option>
+      <option value="brazil">Brazil</option>
+    </select>
 
-  <label>📅 Future Year</label>
-  <select id="year">
-    <option value="2030">2030</option>
-    <option value="2045">2045</option>
-    <option value="2070">2070</option>
-  </select>
+    <label>🚗 Daily Travel (km)</label>
+    <input type="number" id="travel" value="20">
 
-  <button onclick="simulate()">Run Simulation</button>
+    <label>⚡ Monthly Electricity (kWh)</label>
+    <input type="number" id="electricity" value="300">
+
+    <label>🥩 Diet Type</label>
+    <select id="diet">
+      <option value="meat">Meat</option>
+      <option value="mixed">Mixed</option>
+      <option value="vegetarian">Vegetarian</option>
+      <option value="vegan">Vegan</option>
+    </select>
+
+    <label>📅 Future Year</label>
+    <select id="year">
+      <option value="2030">2030</option>
+      <option value="2045">2045</option>
+      <option value="2070">2070</option>
+    </select>
+
+    <button onclick="simulate()">Run Simulation</button>
+  </div>
+
+  <!-- METRICS CARD -->
+  <div class="card" id="resultCard">
+    <h2>Projection Results</h2>
+    <div id="metrics"></div>
+  </div>
+
 </div>
+
+<!-- CHART SECTION -->
+<div class="charts">
+
+  <div class="chart-card">
+    <h3>Carbon Breakdown</h3>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <div class="chart-card">
+    <h3>Temperature Projection</h3>
+    <canvas id="lineChart"></canvas>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
 
 
 
