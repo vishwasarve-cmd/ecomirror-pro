@@ -1,91 +1,79 @@
 body {
-    font-family: Arial;
-    text-align: center;
-    background: #f2f7f6;
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding: 40px;
 }
 
 h1 {
-    background: #2ecc71;
-    color: white;
-    padding: 15px;
-    margin: 0;
+    font-size: 40px;
+    letter-spacing: 2px;
 }
 
-.controls {
-    margin: 20px;
+.subtitle {
+    opacity: 0.7;
+    margin-bottom: 30px;
 }
 
-select, button {
-    padding: 8px;
-    font-size: 14px;
-}
-
-button {
-    background: #27ae60;
-    color: white;
+.controls select,
+.controls button {
+    padding: 10px 15px;
+    border-radius: 8px;
     border: none;
+    margin: 10px;
+}
+
+.controls button {
+    background: linear-gradient(45deg, #00f260, #0575e6);
+    color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
-button:hover {
-    background: #219150;
-}
-
-/* Wheel */
-
-.wheel {
+.wheel-wrapper {
+    position: relative;
     width: 300px;
     height: 300px;
-    margin: 30px auto;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    border-radius: 50%;
-    overflow: hidden;
+    margin: 40px auto;
 }
 
-.box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    flex-direction: column;
-    font-size: 18px;
+.wheel-svg {
+    transform: rotate(45deg);
+    filter: drop-shadow(0px 0px 15px rgba(0,255,255,0.5));
 }
 
-.green { background: #a9dfbf; }
-.red { background: #f5b7b1; }
-.blue { background: #aed6f1; }
-.yellow { background: #f9e79f; }
-
-.center {
+.center-core {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    background: white;
+    width: 130px;
+    height: 130px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    box-shadow: 0 0 30px rgba(0,255,255,0.4);
 }
 
-/* Charts */
+.center-core span {
+    font-size: 28px;
+    font-weight: bold;
+}
 
 .charts {
     width: 80%;
     margin: 40px auto;
 }
 
-canvas {
-    max-width: 500px;
-    margin: 20px auto;
-}
 
 
 
