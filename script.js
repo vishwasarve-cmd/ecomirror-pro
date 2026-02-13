@@ -1,73 +1,48 @@
-let chart;
+function generateFuture() {
+  let travel = parseInt(document.getElementById("travel").value);
+  let electricity = parseInt(document.getElementById("electricity").value);
+  let diet = document.getElementById("diet").value;
+  let timeline = parseInt(document.getElementById("timeline").value);
 
-function createChart(dataPoints) {
+  let score = travel * 0.3 + electricity * 0.05;
 
-    const ctx = document.getElementById('climateChart').getContext('2d');
+  if (diet === "meat") score += 50;
+  if (diet === "vegetarian") score -= 20;
+  if (diet === "vegan") score -= 40;
 
-    if (chart) chart.destroy();
+  let yearsAhead = timeline - 2025;
 
-    chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['2025','2030','2035','2040','2045','2050'],
-            datasets: [{
-                label: 'Projected Temperature Rise (°C)',
-                data: dataPoints,
-                borderColor: '#00c853',
-                borderWidth: 3,
-                fill: false,
-                tension: 0.3
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    labels: { color: 'white' }
-                }
-            },
-            scales: {
-                x: { ticks: { color: 'white' }},
-                y: { ticks: { color: 'white' }}
-            }
-        }
-    });
+  let temperatureRise = (score / 100) * (yearsAhead / 5);
+  let aqi = 50 + score;
+  let greenery = Math.max(10, 100 - score);
+
+  let resultCard = document.getElementById("resultCard");
+  let futureData = document.getElementById("futureData");
+
+  if (score < 120) {
+    document.body.className = "green-bg";
+    resultCard.style.background = "#064e3b";
+
+    futureData.innerHTML = `
+      <h3>🌱 Green Future (${timeline})</h3>
+      <p>🌡 Temperature Rise: +${temperatureRise.toFixed(1)}°C</p>
+      <p>🌫 AQI: ${aqi}</p>
+      <p>🌳 Green Cover: ${greenery}%</p>
+      <p><strong>AI Insight:</strong> Your sustainable choices are helping stabilise climate conditions.</p>
+    `;
+  } else {
+    document.body.className = "polluted-bg";
+    resultCard.style.background = "#7f1d1d";
+
+    futureData.innerHTML = `
+      <h3>🌫 Polluted Scenario (${timeline})</h3>
+      <p>🌡 Temperature Rise: +${temperatureRise.toFixed(1)}°C</p>
+      <p>🌫 AQI: ${aqi}</p>
+      <p>🌳 Green Cover: ${greenery}%</p>
+      <p><strong>AI Insight:</strong> Without intervention, extreme heat waves and pollution may intensify.</p>
+    `;
+  }
 }
-
-function updateSimulation() {
-
-    let baseTemp = parseFloat(document.getElementById("city").value);
-
-    let reduction = 0;
-
-    if (solar.checked) reduction += 0.4;
-    if (metro.checked) reduction += 0.3;
-    if (trees.checked) reduction += 0.5;
-    if (tax.checked) reduction += 0.2;
-
-    let finalTemp = (baseTemp - reduction).toFixed(2);
-
-    document.getElementById("temp").innerText = finalTemp + " °C";
-
-    let score = Math.max(0, Math.min(100, 100 - (finalTemp * 20)));
-    document.getElementById("scoreValue").innerText = score;
-
-    let degree = score * 3.6;
-    document.getElementById("scoreCircle").style.background =
-        `conic-gradient(#00c853 ${degree}deg, #1e293b ${degree}deg)`;
-
-    let projection = [
-        1.2,
-        1.8,
-        2.4,
-        finalTemp - 0.5,
-        finalTemp - 0.2,
-        parseFloat(finalTemp)
-    ];
-
-    createChart(projection);
-}
-
-updateSimulation();
 
 
 
