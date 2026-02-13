@@ -3,64 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror AI</title>
+<title>EcoMirror AI | Future Earth Intelligence</title>
 
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
-<div class="bg-animation"></div>
-
-<header>
-  <h2>🌍 EcoMirror AI</h2>
-  <nav>
-    <button class="nav-btn" data-target="home">Home</button>
-    <button class="nav-btn" data-target="dashboard">Dashboard</button>
-    <button class="nav-btn" data-target="simulator">Simulator</button>
-  </nav>
-</header>
-
-<section id="home" class="page active">
-  <div class="glass">
-    <h1 class="fade-in">AI That Shows Your Future Earth</h1>
-    <p class="fade-in delay">Visualising tomorrow’s environmental reality.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>EcoMirror</h1>
+    <p>AI That Shows Your Future Earth</p>
+    <button id="exploreBtn">Explore Simulation</button>
   </div>
 </section>
 
-<section id="dashboard" class="page">
-  <div class="glass">
-    <h2>Live Climate Dashboard</h2>
-    <canvas id="chartCanvas"></canvas>
+<!-- PROBLEM -->
+<section class="section dark">
+  <h2>The Climate Crisis Is Abstract.</h2>
+  <p>People see numbers. They don't see consequences.</p>
+</section>
+
+<!-- SOLUTION -->
+<section class="section">
+  <h2>We Turn Data Into Future Reality</h2>
+  <div class="stats">
+    <div class="stat">
+      <h3 class="counter" data-target="43">0</h3>
+      <p>% Behaviour Change Increase</p>
+    </div>
+    <div class="stat">
+      <h3 class="counter" data-target="67">0</h3>
+      <p>% Climate Literacy Improvement</p>
+    </div>
   </div>
 </section>
 
-<section id="simulator" class="page">
-  <div class="glass">
-    <h2>Policy Simulator</h2>
+<!-- DASHBOARD -->
+<section class="section dark">
+  <h2>Future Emissions Projection</h2>
+  <canvas id="chartCanvas"></canvas>
+</section>
 
-    <label>Renewable Energy %</label>
+<!-- SIMULATOR -->
+<section class="section">
+  <h2>Policy Intervention Simulator</h2>
+
+  <div class="sim-box">
+    <label>Renewable Energy Adoption (%)</label>
     <input type="range" id="renewable" min="0" max="100" value="40">
-    <span id="renewableValue">40%</span>
+    <span id="renewableVal">40%</span>
 
-    <br><br>
-
-    <label>Green Space %</label>
+    <label>Urban Green Expansion (%)</label>
     <input type="range" id="green" min="0" max="100" value="20">
-    <span id="greenValue">20%</span>
+    <span id="greenVal">20%</span>
 
-    <br><br>
-
-    <button id="simulateBtn">Run Simulation</button>
+    <button id="simulateBtn">Simulate Future</button>
 
     <h3 id="simResult"></h3>
   </div>
 </section>
 
+<footer>
+  <p>EcoMirror AI – Sustainability Hackathon Submission</p>
+</footer>
+
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
