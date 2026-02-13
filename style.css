@@ -13,8 +13,6 @@ h1 {
 
 .container {
   display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -56,9 +54,30 @@ button:hover {
   background: #059669;
 }
 
-#metrics p {
-  margin: 8px 0;
-  font-size: 15px;
+.results-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.metric-card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+.metric-card h3 {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #10b981;
+}
+
+.metric-card p {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .charts {
@@ -74,7 +93,6 @@ button:hover {
   padding: 20px;
   border-radius: 12px;
   width: 450px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 
