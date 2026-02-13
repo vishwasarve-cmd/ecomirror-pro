@@ -3,112 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror AI | Future Earth Simulator</title>
+<title>EcoMirror AI</title>
 
 <link rel="stylesheet" href="styles.css">
 
-<!-- Chart.js CDN -->
+<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body>
 
 <header>
-  <div class="logo">🌍 EcoMirror AI</div>
+  <h2>🌍 EcoMirror AI</h2>
   <nav>
-    <a href="#" data-section="home">Home</a>
-    <a href="#" data-section="dashboard">Dashboard</a>
-    <a href="#" data-section="simulator">Simulator</a>
-    <a href="#" data-section="impact">Scenarios</a>
-    <a href="#" data-section="calculator">Carbon Calc</a>
+    <button class="nav-btn" data-target="home">Home</button>
+    <button class="nav-btn" data-target="dashboard">Dashboard</button>
+    <button class="nav-btn" data-target="simulator">Simulator</button>
+    <button class="nav-btn" data-target="calculator">Carbon Calc</button>
   </nav>
-  <button id="themeToggle">🌙</button>
 </header>
 
 <!-- HOME -->
 <section id="home" class="page active">
   <h1>AI That Shows Your Future Earth</h1>
-  <p>Connecting today’s actions with tomorrow’s environmental reality.</p>
-  <button class="primary-btn" data-section="dashboard">Launch Dashboard</button>
+  <p>See how today’s actions shape tomorrow’s climate.</p>
 </section>
 
 <!-- DASHBOARD -->
 <section id="dashboard" class="page">
-  <h2>Live Climate Dashboard</h2>
-  <canvas id="climateChart"></canvas>
-
-  <div class="metrics">
-    <div class="card">🌡 Temp Rise <span id="tempValue">1.2°C</span></div>
-    <div class="card">🌫 AQI <span id="aqiValue">92</span></div>
-    <div class="card">🌊 Sea Level <span id="seaValue">+12cm</span></div>
-  </div>
+  <h2>Climate Dashboard</h2>
+  <canvas id="chartCanvas"></canvas>
 </section>
 
 <!-- SIMULATOR -->
 <section id="simulator" class="page">
-  <h2>Policy Intervention Simulator</h2>
+  <h2>Policy Simulator</h2>
 
-  <div class="slider-group">
-    <label>Renewable Adoption (%)</label>
-    <input type="range" min="0" max="100" value="40" id="renewable">
-    <span id="renewableVal">40%</span>
-  </div>
+  <label>Renewable Energy %</label>
+  <input type="range" id="renewable" min="0" max="100" value="40">
+  <span id="renewableValue">40%</span>
 
-  <div class="slider-group">
-    <label>Urban Green Space (%)</label>
-    <input type="range" min="0" max="100" value="20" id="greenspace">
-    <span id="greenVal">20%</span>
-  </div>
+  <br><br>
 
-  <button id="simulateBtn" class="primary-btn">Run Simulation</button>
-  <h3 id="simulationResult"></h3>
-</section>
+  <label>Green Space %</label>
+  <input type="range" id="green" min="0" max="100" value="20">
+  <span id="greenValue">20%</span>
 
-<!-- IMPACT -->
-<section id="impact" class="page">
-  <h2>Two Possible Futures</h2>
+  <br><br>
 
-  <div class="future-container">
-    <div class="future green">
-      <h3>🌱 Green Future</h3>
-      <ul>
-        <li>80% Renewable Energy</li>
-        <li>40% Green Expansion</li>
-        <li>65% Emission Reduction</li>
-        <li>Clean Air Cities</li>
-      </ul>
-    </div>
+  <button id="simulateBtn">Run Simulation</button>
 
-    <div class="future polluted">
-      <h3>☠ Polluted Scenario</h3>
-      <ul>
-        <li>Fossil Dependency</li>
-        <li>Urban Heat Crisis</li>
-        <li>35% Health Risk Rise</li>
-        <li>Ecosystem Collapse</li>
-      </ul>
-    </div>
-  </div>
+  <h3 id="simResult"></h3>
 </section>
 
 <!-- CARBON CALCULATOR -->
 <section id="calculator" class="page">
-  <h2>Personal Carbon Footprint Calculator</h2>
+  <h2>Carbon Calculator</h2>
 
-  <input type="number" id="electricity" placeholder="Monthly Electricity (kWh)">
-  <input type="number" id="fuel" placeholder="Monthly Fuel (Litres)">
-  <button id="calcCarbon" class="primary-btn">Calculate</button>
+  <input type="number" id="electricity" placeholder="Electricity (kWh)">
+  <input type="number" id="fuel" placeholder="Fuel (Litres)">
+  <br><br>
+  <button id="calcBtn">Calculate</button>
 
-  <h3 id="carbonOutput"></h3>
+  <h3 id="carbonResult"></h3>
 </section>
 
 <footer>
-  <p>© 2026 EcoMirror AI | Sustainability Hackathon MVP</p>
+  <p>EcoMirror AI - Hackathon MVP</p>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
+
 
 
 
