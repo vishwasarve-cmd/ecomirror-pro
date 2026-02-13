@@ -1,117 +1,90 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: white;
 }
 
-header {
-  text-align: center;
-  padding: 30px;
-}
-
-header h1 {
-  color: #10b981;
-  font-size: 40px;
-  margin: 0;
-}
-
-header p {
-  opacity: 0.7;
-}
-
-.input-section {
+.dashboard {
   display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
+  min-height: 100vh;
 }
 
-.input-card {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+.sidebar {
+  width: 300px;
   padding: 25px;
-  border-radius: 15px;
-  width: 350px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(15px);
 }
 
-.input-card label {
-  margin-top: 12px;
-  display: block;
-  font-size: 14px;
+.sidebar h2 {
+  color: #00ffcc;
 }
 
-.input-card input,
-.input-card select {
+.sidebar input,
+.sidebar select {
   width: 100%;
   padding: 8px;
-  margin-top: 5px;
+  margin-top: 6px;
+  margin-bottom: 12px;
   border-radius: 6px;
   border: none;
 }
 
 button {
-  margin-top: 20px;
-  padding: 10px;
   width: 100%;
-  background: #10b981;
+  padding: 10px;
+  background: #00ffcc;
   border: none;
   border-radius: 8px;
-  color: white;
   font-weight: bold;
   cursor: pointer;
 }
 
 button:hover {
-  background: #059669;
+  background: #00ccaa;
 }
 
-.results-section {
-  padding: 0 40px;
+.main {
+  flex: 1;
+  padding: 40px;
 }
 
-.metrics-grid {
+.kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  margin-bottom: 40px;
 }
 
-.metric-card {
-  background: rgba(255,255,255,0.05);
+.kpi-card {
+  background: rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: 0.3s;
 }
 
-.metric-card:hover {
-  transform: translateY(-5px);
+.kpi-card:hover {
+  transform: scale(1.05);
 }
 
-.metric-card h4 {
+.kpi-card h4 {
   margin: 0;
   font-size: 14px;
   opacity: 0.8;
 }
 
-.metric-card p {
-  font-size: 22px;
+.kpi-card p {
+  font-size: 26px;
   margin-top: 10px;
-  color: #10b981;
+  color: #00ffcc;
 }
 
-.charts-section {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 40px;
-  flex-wrap: wrap;
-}
-
-.chart-box {
-  width: 450px;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 12px;
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
 
 
