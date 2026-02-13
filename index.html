@@ -1,91 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>EcoMirror - Future Earth Predictor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>EcoMirror</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header>
-    <h1>🌍 EcoMirror</h1>
-    <p>See Your Country's Climate Future (2045 Projection)</p>
-  </header>
+<h1>🌍 EcoMirror - Climate Predictor 2045</h1>
 
-  <section class="controls">
-    <select id="countrySelect"></select>
+<div class="controls">
+    <select id="countrySelect">
+        <option>India</option>
+        <option>United States</option>
+        <option>China</option>
+        <option>Brazil</option>
+        <option>Germany</option>
+        <option>Australia</option>
+        <option>Canada</option>
+        <option>Japan</option>
+        <option>France</option>
+        <option>South Africa</option>
+    </select>
+
     <button onclick="predict()">Predict Future</button>
-  </section>
+</div>
 
-  <section id="resultSection" class="result-section">
+<!-- Climate Wheel -->
+<div class="wheel">
 
-    <!-- Climate Wheel -->
-    <div class="climate-wheel">
+    <div class="box green">
+        🌡<br>
+        <span id="tempWheel">--</span>
+    </div>
 
-      <div class="wheel-segment temp-seg">
-        <span>🌡 Temperature</span>
-        <strong id="wheel-temp">--</strong>
-      </div>
+    <div class="box red">
+        🌫<br>
+        <span id="aqiWheel">--</span>
+    </div>
 
-      <div class="wheel-segment aqi-seg">
-        <span>🌫 AQI</span>
-        <strong id="wheel-aqi">--</strong>
-      </div>
+    <div class="box blue">
+        🌊<br>
+        <span id="seaWheel">--</span>
+    </div>
 
-      <div class="wheel-segment sea-seg">
-        <span>🌊 Sea Level</span>
-        <strong id="wheel-sea">--</strong>
-      </div>
+    <div class="box yellow">
+        🏭<br>
+        <span id="carbonWheel">--</span>
+    </div>
 
-      <div class="wheel-segment carbon-seg">
-        <span>🏭 Carbon</span>
-        <strong id="wheel-carbon">--</strong>
-      </div>
-
-      <div class="wheel-center">
+    <div class="center">
         2045
-      </div>
     </div>
 
-    <!-- Info Cards -->
-    <div class="metrics">
-      <div class="card temp-card">
-        <h3>Temperature Rise</h3>
-        <p id="tempValue">--</p>
-      </div>
+</div>
 
-      <div class="card aqi-card">
-        <h3>Air Quality</h3>
-        <p id="aqiValue">--</p>
-      </div>
+<!-- Charts -->
+<div class="charts">
+    <canvas id="pieChart"></canvas>
+    <canvas id="lineChart"></canvas>
+</div>
 
-      <div class="card sea-card">
-        <h3>Sea Level Rise</h3>
-        <p id="seaValue">--</p>
-      </div>
+<script src="script.js"></script>
 
-      <div class="card carbon-card">
-        <h3>Carbon Impact</h3>
-        <p id="carbonValue">--</p>
-      </div>
-    </div>
-
-    <!-- Charts -->
-    <div class="charts">
-      <canvas id="pieChart"></canvas>
-      <canvas id="lineChart"></canvas>
-    </div>
-
-  </section>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
