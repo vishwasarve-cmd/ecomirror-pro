@@ -1,103 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoMirror | Climate Decision Intelligence</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <title>EcoMirror 🌍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav>
-    <div class="logo">EcoMirror</div>
-    <div class="nav-links">
-        <a href="#product">Product</a>
-        <a href="#usecases">Use Cases</a>
-        <a href="#demo">Live Demo</a>
+  <div class="container">
+    <h1>EcoMirror 🌍</h1>
+    <p class="subtitle">See Your City in 2045 Based on Today's Choices</p>
+
+    <div id="form-section">
+      <select id="city">
+        <option>Chennai</option>
+        <option>Delhi</option>
+        <option>Mumbai</option>
+        <option>Bangalore</option>
+      </select>
+
+      <select id="transport">
+        <option value="Car">Car</option>
+        <option value="Public">Public Transport</option>
+        <option value="EV">Electric Vehicle</option>
+      </select>
+
+      <select id="electricity">
+        <option value="High">High Electricity Usage</option>
+        <option value="Medium">Medium Electricity Usage</option>
+        <option value="Low">Low Electricity Usage</option>
+      </select>
+
+      <select id="plastic">
+        <option value="High">High Plastic Usage</option>
+        <option value="Medium">Medium Plastic Usage</option>
+        <option value="Low">Low Plastic Usage</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="trees">
+        Plant Trees
+      </label>
+
+      <label>
+        <input type="checkbox" id="renewable">
+        Use Renewable Energy
+      </label>
+
+      <button onclick="predictFuture()">Predict 2045</button>
     </div>
-</nav>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>Climate Intelligence for Smart Cities</h1>
-        <p>EcoMirror transforms environmental data into predictive decision models for governments and urban planners.</p>
-        <button onclick="scrollToDemo()">Launch Live Simulation</button>
+    <div id="result-section" class="hidden">
+      <h2 id="future-title"></h2>
+      <p id="score"></p>
+      <p id="temperature"></p>
+      <p id="aqi"></p>
+
+      <div class="meter">
+        <div id="health-bar"></div>
+      </div>
+
+      <button onclick="reset()">Try Again</button>
     </div>
-</section>
+  </div>
 
-<section class="problem">
-    <h2>The Problem</h2>
-    <p>
-        Climate dashboards show data.  
-        EcoMirror shows consequences.  
-        We convert environmental inputs into future scenario simulations.
-    </p>
-</section>
-
-<section id="product" class="product">
-    <h2>Platform Overview</h2>
-
-    <div class="feature-grid">
-        <div class="feature">
-            <h3>Data Integration</h3>
-            <p>Satellite, IoT sensors, and public datasets unified in one engine.</p>
-        </div>
-        <div class="feature">
-            <h3>AI Simulation Engine</h3>
-            <p>Multi-layer environmental projection modeling.</p>
-        </div>
-        <div class="feature">
-            <h3>Scenario Intelligence</h3>
-            <p>Compare sustainable vs current trajectory outcomes.</p>
-        </div>
-    </div>
-</section>
-
-<section id="demo" class="demo">
-    <h2>Live Simulation Dashboard</h2>
-
-    <div class="dashboard">
-
-        <div class="input-panel">
-            <input type="text" id="city" placeholder="Enter City Name">
-
-            <label>Time Horizon</label>
-            <select id="timeline">
-                <option value="5">5 Years</option>
-                <option value="10">10 Years</option>
-                <option value="25">25 Years</option>
-            </select>
-
-            <button onclick="runSimulation()">Run Projection</button>
-        </div>
-
-        <div class="output-panel">
-            <div class="metric" id="aqiBox"></div>
-            <div class="metric" id="tempBox"></div>
-            <div class="metric" id="riskBox"></div>
-            <canvas id="chart"></canvas>
-        </div>
-
-    </div>
-</section>
-
-<section id="usecases" class="usecases">
-    <h2>Use Cases</h2>
-    <div class="usecase-grid">
-        <div>Urban Planning</div>
-        <div>Policy Testing</div>
-        <div>Education</div>
-        <div>Industrial Compliance</div>
-    </div>
-</section>
-
-<footer>
-    © 2026 EcoMirror | Transforming Prediction into Prevention
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
 
